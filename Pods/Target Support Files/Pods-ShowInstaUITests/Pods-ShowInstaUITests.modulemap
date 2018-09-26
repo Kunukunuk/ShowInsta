@@ -1,0 +1,6 @@
+framework module Pods_ShowInstaUITests {
+  umbrella header "Pods-ShowInstaUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
