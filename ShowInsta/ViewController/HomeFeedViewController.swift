@@ -14,9 +14,12 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     
     @IBOutlet weak var tableView: UITableView!
     
+    var imagePicker = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        imagePicker.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -26,22 +29,34 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         }
     }
     
-    @IBAction func takePicture(_ sender: UIBarButtonItem) {
+    @IBAction func postItem(_ sender: UIBarButtonItem) {
+        
+        alertSheet()
         
     }
     
+    func alertSheet() {
+        let alertSheet = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+        
+        alertSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in self.useCamera()}))
+        alertSheet.addAction(UIAlertAction(title: "Photo", style: .default , handler: { _ in self.usePhoto()}))
+        alertSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        present(alertSheet, animated: true, completion: nil)
+    }
+    
     func useCamera() {
-        let vc = UIImagePickerController()
-        vc.sourceType = .camera
-        vc.delegate = self
-        present(vc, animated: true)
+        
+        imagePicker.sourceType = .camera
+        
+        present(imagePicker, animated: true)
     }
     
     func usePhoto() {
-        let vc = UIImagePickerController()
-        vc.sourceType = .photoLibrary
-        vc.delegate = self
-        present(vc, animated: true)
+    
+        imagePicker.sourceType = .photoLibrary
+        
+        present(imagePicker, animated: true)
     }
     
     
