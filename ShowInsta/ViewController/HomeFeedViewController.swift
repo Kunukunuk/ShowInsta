@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource {
 
     
     @IBOutlet weak var tableView: UITableView!
@@ -20,6 +20,11 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         super.viewDidLoad()
         
         imagePicker.delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 120
         // Do any additional setup after loading the view.
     }
     
@@ -48,17 +53,26 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     func useCamera() {
         
         imagePicker.sourceType = .camera
-        
-        present(imagePicker, animated: true)
+        print("using camera?!??!>?!?!?/?????!?//////!???")
+        present(imagePicker, animated: true, completion: nil)
     }
     
     func usePhoto() {
     
         imagePicker.sourceType = .photoLibrary
         
-        present(imagePicker, animated: true)
+        present(imagePicker, animated: true, completion: nil)
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
+        
+        return cell
+    }
     
     /*
     // MARK: - Navigation
