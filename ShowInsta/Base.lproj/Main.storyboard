@@ -274,7 +274,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="398" id="2jV-Kj-sMU">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="398" id="2jV-Kj-sMU" customClass="FeedCell" customModule="ShowInsta" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="398"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2jV-Kj-sMU" id="hG6-bn-NPW">
@@ -305,6 +305,10 @@
                                                 <constraint firstItem="zKM-qa-ygv" firstAttribute="width" secondItem="hG6-bn-NPW" secondAttribute="width" id="xf1-R7-Xcy"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="editTextView" destination="1eF-tC-zrG" id="wq0-js-srX"/>
+                                            <outlet property="picImageView" destination="zKM-qa-ygv" id="3lV-60-Mjq"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -319,13 +323,20 @@
                         <viewLayoutGuide key="safeArea" id="HUR-1T-zLM"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home Feed" id="5G7-8m-Eda">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="uFQ-iI-8Fb"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="uFQ-iI-8Fb">
+                            <connections>
+                                <action selector="logoutUser:" destination="Z3W-U8-b8S" id="teY-Fj-kSg"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="insta_camera_btn" id="tSw-8C-znl">
                             <connections>
                                 <segue destination="vwZ-2J-jFL" kind="presentation" id="FUs-ms-Xcz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Lau-VE-eti" id="lJj-ia-VYZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wmH-0N-FAm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
