@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class HomeFeedViewController: UIViewController {
 
@@ -16,7 +17,12 @@ class HomeFeedViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func logoutUser(_ sender: UIBarButtonItem) {
+        PFUser.logOutInBackground { (error: Error?) in
+            // PFUser.current() will now be nil
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
