@@ -40,7 +40,6 @@
                                 <rect key="frame" x="160.5" y="273" width="54" height="30"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
-                                    <action selector="signUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Clw-RB-f7h"/>
                                     <segue destination="b4T-Ul-rMN" kind="presentation" id="4CO-8G-Mpv"/>
                                 </connections>
                             </button>
@@ -79,10 +78,10 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
-        <!--View Controller-->
+        <!--Register View Controller-->
         <scene sceneID="u88-n1-lxg">
             <objects>
-                <viewController id="b4T-Ul-rMN" sceneMemberID="viewController">
+                <viewController id="b4T-Ul-rMN" customClass="RegisterViewController" customModule="ShowInsta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sfo-UO-rar">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -120,6 +119,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pi0-W3-acV">
                                 <rect key="frame" x="117" y="388" width="141" height="30"/>
                                 <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="registerUser:" destination="b4T-Ul-rMN" eventType="touchUpInside" id="u5h-GV-ki5"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -148,7 +150,11 @@
                         <viewLayoutGuide key="safeArea" id="JpN-kv-ye5"/>
                     </view>
                     <connections>
-                        <segue destination="dEj-gx-HaM" kind="presentation" identifier="finishedReg" id="973-xK-qex"/>
+                        <outlet property="emailTextField" destination="S3W-or-c2D" id="PSW-rp-jbn"/>
+                        <outlet property="nameTextField" destination="gqo-uu-ucn" id="y7f-Bd-yzm"/>
+                        <outlet property="passwordField" destination="JxT-fA-Yje" id="WnZ-Ku-xeN"/>
+                        <outlet property="usernameField" destination="zOb-dj-vb8" id="2fA-LW-yab"/>
+                        <segue destination="dEj-gx-HaM" kind="presentation" identifier="finishedRegister" id="973-xK-qex"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4s-Fv-C1E" userLabel="First Responder" sceneMemberID="firstResponder"/>

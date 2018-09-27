@@ -38,24 +38,7 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    
-    @IBAction func signUp(_ sender: UIButton) {
-        let newUser = PFUser()
         
-        newUser.username = usernameField.text
-        newUser.password = passwordField.text
-        
-        newUser.signUpInBackground { (success: Bool, error: Error?) in
-                if success {
-                    print("created new user")
-                    self.performSegue(withIdentifier: "loginSegue", sender: nil)
-                } else {
-                    print(error?.localizedDescription)
-                }
-            }
-    }
-    
-    
     /*
     // MARK: - Navigation
 
