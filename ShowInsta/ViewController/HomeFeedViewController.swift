@@ -9,10 +9,11 @@
 import UIKit
 import Parse
 
-class HomeFeedViewController: UIViewController {
+class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     
     @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,6 +25,25 @@ class HomeFeedViewController: UIViewController {
             // PFUser.current() will now be nil
         }
     }
+    
+    @IBAction func takePicture(_ sender: UIBarButtonItem) {
+        
+    }
+    
+    func useCamera() {
+        let vc = UIImagePickerController()
+        vc.sourceType = .camera
+        vc.delegate = self
+        present(vc, animated: true)
+    }
+    
+    func usePhoto() {
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        present(vc, animated: true)
+    }
+    
     
     /*
     // MARK: - Navigation

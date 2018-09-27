@@ -28,7 +28,7 @@ class RegisterViewController: UIViewController {
         
         newUser.username = usernameField.text
         newUser.password = passwordField.text
-        newUser.email = emailTextField.text
+        //newUser.email = emailTextField.text
         
         newUser.signUpInBackground { (success: Bool, error: Error?) in
             if success {

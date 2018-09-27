@@ -330,6 +330,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="insta_camera_btn" id="tSw-8C-znl">
                             <connections>
+                                <action selector="takePicture:" destination="Z3W-U8-b8S" id="YM4-z4-dmu"/>
                                 <segue destination="vwZ-2J-jFL" kind="presentation" id="FUs-ms-Xcz"/>
                             </connections>
                         </barButtonItem>
