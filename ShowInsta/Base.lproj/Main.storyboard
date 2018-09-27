@@ -205,6 +205,48 @@
             </objects>
             <point key="canvasLocation" x="2964" y="939.58020989505258"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="1k6-LA-QBd">
+            <objects>
+                <viewController id="JKE-CB-mhW" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vra-ab-zXa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X2u-z6-TOK">
+                                <rect key="frame" x="10" y="74" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="5As-D1-pMM"/>
+                                    <constraint firstAttribute="height" constant="150" id="lcD-mB-oKx"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="to0-CW-h3H">
+                                <rect key="frame" x="170" y="85" width="195" height="367"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="X2u-z6-TOK" firstAttribute="top" secondItem="2fA-jR-3LS" secondAttribute="top" constant="10" id="EdN-C8-FUx"/>
+                            <constraint firstItem="to0-CW-h3H" firstAttribute="top" secondItem="2fA-jR-3LS" secondAttribute="top" constant="10" id="Ghc-Zj-yvg"/>
+                            <constraint firstItem="to0-CW-h3H" firstAttribute="leading" secondItem="X2u-z6-TOK" secondAttribute="trailing" constant="10" id="TyT-lb-T79"/>
+                            <constraint firstItem="X2u-z6-TOK" firstAttribute="leading" secondItem="2fA-jR-3LS" secondAttribute="leading" constant="10" id="dxf-16-XoJ"/>
+                            <constraint firstItem="2fA-jR-3LS" firstAttribute="trailing" secondItem="to0-CW-h3H" secondAttribute="trailing" constant="10" id="z1U-QD-LVe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2fA-jR-3LS"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Item" id="Uhh-lr-swo">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="heO-bX-8Dq"/>
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="UXt-Co-hyf"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t5e-X8-1jc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4992.8000000000002" y="133.5832083958021"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="Hfl-Ag-2ay">
             <objects>
@@ -276,7 +318,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HUR-1T-zLM"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Home Feed" id="5G7-8m-Eda"/>
+                    <navigationItem key="navigationItem" title="Home Feed" id="5G7-8m-Eda">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="uFQ-iI-8Fb"/>
+                        <barButtonItem key="rightBarButtonItem" image="insta_camera_btn" id="tSw-8C-znl">
+                            <connections>
+                                <segue destination="vwZ-2J-jFL" kind="presentation" id="FUs-ms-Xcz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wmH-0N-FAm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -300,11 +349,11 @@
             </objects>
             <point key="canvasLocation" x="1085.5999999999999" y="133.5832083958021"/>
         </scene>
-        <!--Home-->
+        <!--Feed-->
         <scene sceneID="apJ-h3-74F">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gid-Ej-Okb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" id="agO-YH-vGa"/>
+                    <tabBarItem key="tabBarItem" title="Feed" id="agO-YH-vGa"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4CK-P0-Qyi">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -338,7 +387,28 @@
             </objects>
             <point key="canvasLocation" x="2024.8" y="939.58020989505258"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kQa-5e-tJV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vwZ-2J-jFL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="c3O-Z8-9sD">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="JKE-CB-mhW" kind="relationship" relationship="rootViewController" id="tXp-DX-bVA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YsH-gT-mmv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4053.5999999999999" y="133.5832083958021"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="insta_camera_btn" width="25" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="973-xK-qex"/>
     </inferredMetricsTieBreakers>
