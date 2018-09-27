@@ -13,11 +13,8 @@ class RegisterViewController: UIViewController {
     
     
     @IBOutlet weak var emailTextField: UITextField!
-    
     @IBOutlet weak var nameTextField: UITextField!
-    
     @IBOutlet weak var usernameField: UITextField!
-    
     @IBOutlet weak var passwordField: UITextField!
     
     override func viewDidLoad() {
@@ -31,6 +28,7 @@ class RegisterViewController: UIViewController {
         
         newUser.username = usernameField.text
         newUser.password = passwordField.text
+        newUser.email = emailTextField.text
         
         newUser.signUpInBackground { (success: Bool, error: Error?) in
             if success {

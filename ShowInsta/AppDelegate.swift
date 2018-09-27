@@ -23,6 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.server = "https://showinsta.herokuapp.com/parse"
             })
         )
+        
+        if PFUser.current() != nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            // view controller currently being set in Storyboard as default will be overridden
+            window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "HomeFeedViewController")
+        }
+        
         return true
     }
 
