@@ -164,7 +164,7 @@
         <!--Profile-->
         <scene sceneID="dcw-gu-YrF">
             <objects>
-                <viewController id="Pqa-2H-jlp" sceneMemberID="viewController">
+                <viewController id="Pqa-2H-jlp" customClass="ProfileViewController" customModule="ShowInsta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uQb-BB-cyh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -239,11 +239,20 @@
                         <viewLayoutGuide key="safeArea" id="2fA-jR-3LS"/>
                     </view>
                     <navigationItem key="navigationItem" title="Item" id="Uhh-lr-swo">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="heO-bX-8Dq"/>
-                        <barButtonItem key="rightBarButtonItem" title="Share" id="UXt-Co-hyf"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="heO-bX-8Dq">
+                            <connections>
+                                <segue destination="i2Y-To-nfb" kind="unwind" unwindAction="unwindToHomeFeedCancel:" id="Ok6-ok-dOC"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="UXt-Co-hyf">
+                            <connections>
+                                <segue destination="i2Y-To-nfb" kind="unwind" unwindAction="unwindToHomeFeedShare:" id="GUH-SY-iCX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t5e-X8-1jc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="i2Y-To-nfb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4992.8000000000002" y="133.5832083958021"/>
         </scene>

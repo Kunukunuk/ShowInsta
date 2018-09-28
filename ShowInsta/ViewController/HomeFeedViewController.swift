@@ -48,6 +48,7 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         alertSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(alertSheet, animated: true, completion: nil)
+        print("I like to see you")
     }
     
     func useCamera() {
