@@ -80,6 +80,14 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         }
     }
     
+    @IBAction func unwindToHomeFeedCancel(_ segue: UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func unwindToHomeFeedShare(_ segue: UIStoryboardSegue) {
+        
+    }
+    
     /*
     // MARK: - Navigation
 

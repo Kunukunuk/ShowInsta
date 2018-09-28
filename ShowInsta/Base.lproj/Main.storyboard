@@ -208,7 +208,7 @@
         <!--Item-->
         <scene sceneID="1k6-LA-QBd">
             <objects>
-                <viewController id="JKE-CB-mhW" sceneMemberID="viewController">
+                <viewController id="JKE-CB-mhW" customClass="ItemViewController" customModule="ShowInsta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vra-ab-zXa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

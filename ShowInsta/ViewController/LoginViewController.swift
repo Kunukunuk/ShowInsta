@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction func unwindLogout(_ sender: UIStoryboardSegue) {
+    @IBAction func unwindLogout(_ segue: UIStoryboardSegue) {
         
     }
     
