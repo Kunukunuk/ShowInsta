@@ -10,7 +10,7 @@
 #import <Bolts/BFTask.h>
 
 /**
- A policy interface for overriding the default upload behavior of uploading a PFFile
+ A policy interface for overriding the default upload behavior of uploading a PFFileObject
  to application's parse server. Allows for direct uploads to other file storage
  providers.
  */

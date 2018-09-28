@@ -38,7 +38,11 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func unwindLogout(_ sender: UIStoryboardSegue) {
         
+    }
+    
     /*
     // MARK: - Navigation
 

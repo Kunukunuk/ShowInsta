@@ -1,22 +1,31 @@
 PODS:
   - Bolts/Tasks (1.9.0)
-  - Parse (1.16.0):
-    - Parse/Core (= 1.16.0)
-  - Parse/Core (1.16.0):
+  - Parse (1.17.1):
+    - Parse/Core (= 1.17.1)
+  - Parse/Core (1.17.1):
     - Bolts/Tasks (~> 1.9)
 
 DEPENDENCIES:
-  - Parse
+  - Parse (from `https://github.com/RyanBertrand/Parse-SDK-iOS-OSX`, branch `rename-PFFile-and-PFLogger`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Bolts
-    - Parse
+
+EXTERNAL SOURCES:
+  Parse:
+    :branch: rename-PFFile-and-PFLogger
+    :git: https://github.com/RyanBertrand/Parse-SDK-iOS-OSX
+
+CHECKOUT OPTIONS:
+  Parse:
+    :commit: 2e0fc9ee229d5317ee7c784c13853558245d6361
+    :git: https://github.com/RyanBertrand/Parse-SDK-iOS-OSX
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  Parse: 5b36dc2c2f0a2fd82a257ae018bc3d68cf2c24e7
+  Parse: 63b2b9181fd00cc82c274226f9263f38a91666d5
 
-PODFILE CHECKSUM: 9572755b7e56c4914efe823f62a2e56f662cffdd
+PODFILE CHECKSUM: fb746b8ad7e9e1f234fe49c51ac4bb3fd6948ad2
 
 COCOAPODS: 1.6.0.beta.1

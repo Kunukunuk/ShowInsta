@@ -265,7 +265,7 @@
         <!--Home Feed-->
         <scene sceneID="ceP-Xd-e6g">
             <objects>
-                <viewController id="Z3W-U8-b8S" customClass="HomeFeedViewController" customModule="ShowInsta" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeFeed" id="Z3W-U8-b8S" customClass="HomeFeedViewController" customModule="ShowInsta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LoX-lS-I6G">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -326,6 +326,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="uFQ-iI-8Fb">
                             <connections>
                                 <action selector="logoutUser:" destination="Z3W-U8-b8S" id="teY-Fj-kSg"/>
+                                <segue destination="AN2-b1-X68" kind="unwind" unwindAction="unwindLogout:" id="uLc-8E-HuF"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="insta_camera_btn" id="tSw-8C-znl">
@@ -340,13 +341,14 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wmH-0N-FAm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="AN2-b1-X68" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2964" y="133.5832083958021"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="rGt-C1-Clb">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="dEj-gx-HaM" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBar" automaticallyAdjustsScrollViewInsets="NO" id="dEj-gx-HaM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zzZ-Zc-Duk">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

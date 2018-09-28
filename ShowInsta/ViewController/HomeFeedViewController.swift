@@ -13,7 +13,7 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
 
     
     @IBOutlet weak var tableView: UITableView!
-    
+    var takenImage: UIImage?
     var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -70,8 +70,14 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
-        
+        cell.picImageView.image = takenImage
         return cell
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            takenImage = image
+        }
     }
     
     /*
