@@ -76,9 +76,13 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             takenImage = image
         }
+        imagePicker.dismiss(animated: true, completion: nil)
+        
+        performSegue(withIdentifier: "showItem", sender: nil)
     }
     
     @IBAction func unwindToHomeFeedCancel(_ segue: UIStoryboardSegue) {
@@ -89,14 +93,13 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showItem" {
+            
+            let vc = segue.destination as! ItemViewController
+            
+            vc.photoImageVIEW.image = takenImage
+        }
     }
-    */
 
 }

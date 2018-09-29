@@ -250,6 +250,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="captionTextView" destination="to0-CW-h3H" id="Jjg-1t-vKa"/>
+                        <outlet property="photoImageVIEW" destination="X2u-z6-TOK" id="L9f-Gn-4sZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t5e-X8-1jc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="i2Y-To-nfb" userLabel="Exit" sceneMemberID="exit"/>
@@ -290,9 +294,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="397.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zKM-qa-ygv">
-                                                    <rect key="frame" x="15" y="11" width="375" height="358"/>
-                                                </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1eF-tC-zrG">
                                                     <rect key="frame" x="0.0" y="369" width="375" height="28.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -300,6 +301,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zKM-qa-ygv">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="358"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="zKM-qa-ygv" secondAttribute="trailing" id="6PK-03-84a"/>

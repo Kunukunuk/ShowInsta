@@ -10,10 +10,15 @@ import UIKit
 
 class ItemViewController: UIViewController {
 
+    
+    @IBOutlet weak var photoImageVIEW: UIImageView!
+    @IBOutlet weak var captionTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        print("I am here in hell *****")
     }
     
 
