@@ -213,16 +213,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X2u-z6-TOK">
-                                <rect key="frame" x="10" y="74" width="150" height="150"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X2u-z6-TOK">
+                                <rect key="frame" x="10" y="74" width="355" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="5As-D1-pMM"/>
-                                    <constraint firstAttribute="height" constant="150" id="lcD-mB-oKx"/>
+                                    <constraint firstAttribute="height" constant="150" id="BJA-hi-fgi"/>
+                                    <constraint firstAttribute="width" constant="355" id="n4H-Xd-cOT"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="to0-CW-h3H">
-                                <rect key="frame" x="170" y="85" width="195" height="367"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="to0-CW-h3H">
+                                <rect key="frame" x="10" y="234" width="355" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="OG0-u8-9SN"/>
+                                </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -230,11 +233,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="X2u-z6-TOK" firstAttribute="top" secondItem="2fA-jR-3LS" secondAttribute="top" constant="10" id="EdN-C8-FUx"/>
-                            <constraint firstItem="to0-CW-h3H" firstAttribute="top" secondItem="2fA-jR-3LS" secondAttribute="top" constant="10" id="Ghc-Zj-yvg"/>
-                            <constraint firstItem="to0-CW-h3H" firstAttribute="leading" secondItem="X2u-z6-TOK" secondAttribute="trailing" constant="10" id="TyT-lb-T79"/>
-                            <constraint firstItem="X2u-z6-TOK" firstAttribute="leading" secondItem="2fA-jR-3LS" secondAttribute="leading" constant="10" id="dxf-16-XoJ"/>
-                            <constraint firstItem="2fA-jR-3LS" firstAttribute="trailing" secondItem="to0-CW-h3H" secondAttribute="trailing" constant="10" id="z1U-QD-LVe"/>
+                            <constraint firstItem="to0-CW-h3H" firstAttribute="top" secondItem="X2u-z6-TOK" secondAttribute="bottom" constant="10" id="2gx-OF-Puc"/>
+                            <constraint firstItem="2fA-jR-3LS" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="to0-CW-h3H" secondAttribute="bottom" constant="10" id="95h-JV-aEX"/>
+                            <constraint firstItem="X2u-z6-TOK" firstAttribute="top" secondItem="2fA-jR-3LS" secondAttribute="top" constant="10" id="S0f-9u-qp8"/>
+                            <constraint firstItem="to0-CW-h3H" firstAttribute="leading" secondItem="2fA-jR-3LS" secondAttribute="leading" constant="10" id="TGS-lq-4Yw"/>
+                            <constraint firstItem="2fA-jR-3LS" firstAttribute="trailing" secondItem="X2u-z6-TOK" secondAttribute="trailing" constant="10" id="fYA-LH-UlP"/>
+                            <constraint firstItem="2fA-jR-3LS" firstAttribute="trailing" secondItem="to0-CW-h3H" secondAttribute="trailing" constant="10" id="x3Z-G2-cL2"/>
+                            <constraint firstItem="X2u-z6-TOK" firstAttribute="leading" secondItem="2fA-jR-3LS" secondAttribute="leading" constant="10" id="yor-ev-GRl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2fA-jR-3LS"/>
                     </view>
@@ -301,15 +306,17 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zKM-qa-ygv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="358"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zKM-qa-ygv">
+                                                    <rect key="frame" x="15" y="11" width="375" height="358"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="358" id="Mp2-Zg-YLA"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="zKM-qa-ygv" secondAttribute="trailing" id="6PK-03-84a"/>
                                                 <constraint firstItem="zKM-qa-ygv" firstAttribute="top" secondItem="hG6-bn-NPW" secondAttribute="topMargin" id="DjE-Bw-hlg"/>
                                                 <constraint firstItem="1eF-tC-zrG" firstAttribute="top" secondItem="zKM-qa-ygv" secondAttribute="bottom" id="GXf-iX-P4I"/>
-                                                <constraint firstItem="zKM-qa-ygv" firstAttribute="height" secondItem="hG6-bn-NPW" secondAttribute="height" multiplier="9:10" id="K89-Mw-6r6"/>
                                                 <constraint firstItem="1eF-tC-zrG" firstAttribute="width" secondItem="hG6-bn-NPW" secondAttribute="width" id="Nlg-KA-NLG"/>
                                                 <constraint firstItem="1eF-tC-zrG" firstAttribute="leading" secondItem="hG6-bn-NPW" secondAttribute="leading" id="VNn-U4-tNw"/>
                                                 <constraint firstAttribute="trailing" secondItem="1eF-tC-zrG" secondAttribute="trailing" id="YZZ-Tj-Brb"/>

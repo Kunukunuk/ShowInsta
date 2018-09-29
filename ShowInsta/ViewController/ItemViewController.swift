@@ -13,23 +13,19 @@ class ItemViewController: UIViewController {
     
     @IBOutlet weak var photoImageVIEW: UIImageView!
     @IBOutlet weak var captionTextView: UITextView!
+    var takenImage: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print("I am here in hell *****")
+        photoImageVIEW.image = takenImage
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "unwindToHomeFeedShare" {
+            print("Hello")
+        }
     }
-    */
 
 }

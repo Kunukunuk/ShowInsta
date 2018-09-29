@@ -14,6 +14,7 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     
     @IBOutlet weak var tableView: UITableView!
     var takenImage: UIImage?
+    var caption: String?
     var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -48,13 +49,11 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         alertSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(alertSheet, animated: true, completion: nil)
-        print("I like to see you")
     }
     
     func useCamera() {
         
         imagePicker.sourceType = .camera
-        print("using camera?!??!>?!?!?/?????!?//////!???")
         present(imagePicker, animated: true, completion: nil)
     }
     
@@ -72,6 +71,7 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         cell.picImageView.image = takenImage
+        cell.editTextView.text = caption
         return cell
     }
     
@@ -91,14 +91,23 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     
     @IBAction func unwindToHomeFeedShare(_ segue: UIStoryboardSegue) {
         
+        print("Hello good sir")
+        if let itemVC = segue.source as? ItemViewController {
+            print("insde source")
+            takenImage = itemVC.takenImage
+            caption = itemVC.captionTextView.text
+            tableView.reloadData()
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showItem" {
             
-            let vc = segue.destination as! ItemViewController
+            let vc = segue.destination as! UINavigationController
+            let realVC = vc.topViewController as! ItemViewController
             
-            vc.photoImageVIEW.image = takenImage
+            realVC.takenImage = self.takenImage
         }
     }
 
