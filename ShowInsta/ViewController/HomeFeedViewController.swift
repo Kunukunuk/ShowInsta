@@ -16,6 +16,7 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     var takenImage: UIImage?
     var caption: String?
     var imagePicker = UIImagePickerController()
+    var tableData = [AnyObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +66,11 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if tableData.isEmpty {
+            return 1
+        }
+        return tableData.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
