@@ -16,7 +16,8 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     var takenImage: UIImage?
     var caption: String?
     var imagePicker = UIImagePickerController()
-    var tableData = [AnyObject]()
+    var tableData: [[String: [AnyObject]]] = []
+    var dates: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,8 +76,22 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
-        cell.picImageView.image = takenImage
-        cell.editTextView.text = caption
+        
+        if !tableData.isEmpty {
+            let date = tableData[indexPath.row]
+            
+            let key = date[dates[indexPath.row]]
+            
+            let img = key![0] as! UIImage
+            let cap = key![1] as! String
+            
+            cell.picImageView.image = img
+            cell.editTextView.text = cap
+        } else {
+            cell.picImageView.image = takenImage
+            cell.editTextView.text = caption
+        }
+        
         return cell
     }
     
@@ -96,11 +111,22 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     
     @IBAction func unwindToHomeFeedShare(_ segue: UIStoryboardSegue) {
         
+        let currentTime = NSDate()
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "YYYY-MM-DD HH:MM:SS"
+        
+        let currentDateTime = dateFormat.string(from: currentTime as Date)
+        
         print("Hello good sir")
         if let itemVC = segue.source as? ItemViewController {
             print("insde source")
+            
             takenImage = itemVC.takenImage
             caption = itemVC.captionTextView.text
+            
+            dates.append(currentDateTime)
+            tableData.append([currentDateTime: [takenImage!, caption! as AnyObject]])
+            
             tableView.reloadData()
         }
         
