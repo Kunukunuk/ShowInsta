@@ -43,7 +43,9 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         
         alertSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in self.useCamera()}))
         alertSheet.addAction(UIAlertAction(title: "Photo", style: .default , handler: { _ in self.usePhoto()}))
-        alertSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        cancelAction.setValue(UIColor.red, forKey: "titleTextColor")
+        alertSheet.addAction(cancelAction)
         
         present(alertSheet, animated: true, completion: nil)
     }
