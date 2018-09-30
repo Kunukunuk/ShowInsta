@@ -11,7 +11,8 @@ import UIKit
 class FeedCell: UITableViewCell {
 
     @IBOutlet weak var picImageView: UIImageView!
-    @IBOutlet weak var editTextView: UITextView!
+    @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

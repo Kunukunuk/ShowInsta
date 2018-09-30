@@ -89,10 +89,13 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
             let cap = key![1] as! String
             
             cell.picImageView.image = img
-            cell.editTextView.text = cap
+            cell.captionLabel.text = cap
+            cell.dateLabel.text = dates[indexPath.row]
+            
         } else {
             cell.picImageView.image = UIImage(named: "image_placeholder")
-            cell.editTextView.text = "caption"
+            cell.captionLabel.text = "caption"
+            cell.dateLabel.text = "Date posted"
         }
         
         return cell
@@ -131,6 +134,10 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
             tableView.reloadData()
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
