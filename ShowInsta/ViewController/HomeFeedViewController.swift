@@ -28,15 +28,12 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 120
+        
         // Do any additional setup after loading the view.
     }
     
     @IBAction func logoutUser(_ sender: UIBarButtonItem) {
-        print("hellos")
-        PFUser.logOutInBackground { (error: Error?) in
-            // PFUser.current() will now be nil
-            self.performSegue(withIdentifier: "Logout", sender: nil)
-        }
+        
     }
     
     
@@ -140,6 +137,10 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
             let realVC = vc.topViewController as! ItemViewController
             
             realVC.takenImage = self.takenImage
+        } else if segue.identifier == "Logout" {
+            PFUser.logOutInBackground { (error: Error?) in
+                // PFUser.current() will now be nil
+            }
         }
     }
 

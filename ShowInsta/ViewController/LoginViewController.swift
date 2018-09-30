@@ -19,8 +19,21 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        checkIsLoggedIn()
+    }
+    
+    func checkIsLoggedIn () {
+        if PFUser.current() != nil {
+            print("not nil")
+            self.performSegue(withIdentifier: "loginSegue", sender: nil)
+        }
     }
     
     @IBAction func signIn(_ sender: UIButton) {
