@@ -16,6 +16,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        profileImageView.image = UIImage(named: "Profile")
         // Do any additional setup after loading the view.
     }
     

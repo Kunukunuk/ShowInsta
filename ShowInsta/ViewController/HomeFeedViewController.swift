@@ -88,8 +88,8 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
             cell.picImageView.image = img
             cell.editTextView.text = cap
         } else {
-            cell.picImageView.image = takenImage
-            cell.editTextView.text = caption
+            cell.picImageView.image = UIImage(named: "image_placeholder")
+            cell.editTextView.text = "caption"
         }
         
         return cell
