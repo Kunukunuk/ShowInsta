@@ -4,13 +4,16 @@ PODS:
     - Parse/Core (= 1.17.1)
   - Parse/Core (1.17.1):
     - Bolts/Tasks (~> 1.9)
+  - RSKPlaceholderTextView (4.0.0)
 
 DEPENDENCIES:
   - Parse (from `https://github.com/RyanBertrand/Parse-SDK-iOS-OSX`, branch `rename-PFFile-and-PFLogger`)
+  - RSKPlaceholderTextView
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Bolts
+    - RSKPlaceholderTextView
 
 EXTERNAL SOURCES:
   Parse:
@@ -25,7 +28,8 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Parse: 63b2b9181fd00cc82c274226f9263f38a91666d5
+  RSKPlaceholderTextView: 15f1dc1883e103ea605874b863f19ff6b08496d5
 
-PODFILE CHECKSUM: fb746b8ad7e9e1f234fe49c51ac4bb3fd6948ad2
+PODFILE CHECKSUM: cd72fe862c9d33fd785a774ff0fbde1d4a4ca7c2
 
 COCOAPODS: 1.6.0.beta.1

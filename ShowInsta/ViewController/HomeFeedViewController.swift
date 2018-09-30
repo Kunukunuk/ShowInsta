@@ -23,6 +23,7 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         super.viewDidLoad()
         
         imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -52,8 +53,13 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     
     func useCamera() {
         
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+            present(imagePicker, animated: true, completion: nil)
+        } else {
+            print("camera not availble")
+            imagePicker.sourceType = .photoLibrary
+        }
     }
     
     func usePhoto() {
@@ -65,7 +71,7 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableData.isEmpty {
-            return 1
+            return 20
         }
         return tableData.count
         

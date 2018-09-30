@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import RSKPlaceholderTextView
 
 class ItemViewController: UIViewController {
 
     
     @IBOutlet weak var photoImageVIEW: UIImageView!
-    @IBOutlet weak var captionTextView: UITextView!
+    @IBOutlet weak var captionTextView: RSKPlaceholderTextView!
     var takenImage: UIImage!
     
     override func viewDidLoad() {
