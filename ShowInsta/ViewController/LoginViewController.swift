@@ -31,7 +31,6 @@ class LoginViewController: UIViewController {
     
     func checkIsLoggedIn () {
         if PFUser.current() != nil {
-            print("not nil")
             self.performSegue(withIdentifier: "loginSegue", sender: nil)
         }
     }
