@@ -32,11 +32,6 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func logoutUser(_ sender: UIBarButtonItem) {
-        
-    }
-    
-    
     @IBAction func postItem(_ sender: UIBarButtonItem) {
         
         alertSheet()

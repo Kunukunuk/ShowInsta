@@ -367,7 +367,6 @@
                     <navigationItem key="navigationItem" title="Home Feed" id="5G7-8m-Eda">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="bRw-OS-qML">
                             <connections>
-                                <action selector="logoutUser:" destination="Z3W-U8-b8S" id="6Mb-4Q-ahx"/>
                                 <segue destination="AN2-b1-X68" kind="unwind" identifier="Logout" unwindAction="unwindLogout:" id="tVQ-89-2Ym"/>
                             </connections>
                         </barButtonItem>
