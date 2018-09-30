@@ -32,10 +32,13 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     }
     
     @IBAction func logoutUser(_ sender: UIBarButtonItem) {
+        print("hellos")
         PFUser.logOutInBackground { (error: Error?) in
             // PFUser.current() will now be nil
+            self.performSegue(withIdentifier: "Logout", sender: nil)
         }
     }
+    
     
     @IBAction func postItem(_ sender: UIBarButtonItem) {
         
@@ -117,9 +120,7 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         
         let currentDateTime = dateFormat.string(from: currentTime as Date)
         
-        print("Hello good sir")
         if let itemVC = segue.source as? ItemViewController {
-            print("insde source")
             
             takenImage = itemVC.takenImage
             caption = itemVC.captionTextView.text
