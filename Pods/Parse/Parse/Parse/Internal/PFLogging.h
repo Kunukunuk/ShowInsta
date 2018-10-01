@@ -12,13 +12,13 @@
 
 # import <Parse/PFConstants.h>
 
-#import "PFSystemLogger.h"
+#import "PFLogger.h"
 
 static const PFLoggingTag PFLoggingTagCommon = 0;
 static const PFLoggingTag PFLoggingTagCrashReporting = 100;
 
 #define PFLog(level, loggingTag, frmt, ...) \
-[[PFSystemLogger sharedLogger] logMessageWithLevel:level tag:loggingTag format:(frmt), ##__VA_ARGS__]
+[[PFLogger sharedLogger] logMessageWithLevel:level tag:loggingTag format:(frmt), ##__VA_ARGS__]
 
 #define PFLogError(tag, frmt, ...) \
 PFLog(PFLogLevelError, (tag), (frmt), ##__VA_ARGS__)

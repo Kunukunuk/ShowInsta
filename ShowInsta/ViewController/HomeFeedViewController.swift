@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ParseLiveQuery
 
 class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource {
 
@@ -18,19 +19,102 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     var imagePicker = UIImagePickerController()
     var tableData: [[String: [AnyObject]]] = []
     var dates: [String] = []
+    var newData:[PFObject] = []
+    
+    var client : ParseLiveQuery.Client!
+    var subscription : Subscription<PFUser>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         imagePicker.delegate = self
-        imagePicker.allowsEditing = true
+        //imagePicker.allowsEditing = true
         tableView.delegate = self
         tableView.dataSource = self
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 120
         
+        getPosts()
+        getQuery()
         // Do any additional setup after loading the view.
+    }
+    
+    func getPosts() {
+        
+       let query = Post.query()
+        
+        query?.order(byDescending: "createdAt")
+        query?.includeKey("author")
+        query?.includeKey("createdAt")
+        query?.limit = 20
+        
+        query?.findObjectsInBackground { (allPosts, error) in
+            if error == nil {
+                if let posts = allPosts {
+                    let object = posts.first
+                    let date = object?.createdAt
+                    
+                    let dateFormat = DateFormatter()
+                    dateFormat.dateFormat = "YYYY-MM-DD HH:MM:SS"
+                    
+                    let currentDateTime = dateFormat.string(from: date!)
+                    
+                    self.newData = posts
+                    print("post: \(posts)")
+                    print("newData: \(self.newData)")
+                    print("newData: \(self.newData.count)")
+                    for post in posts {
+                        let caption = post["caption"] as! String
+                        self.dates.append(currentDateTime)
+                        self.tableData.append([currentDateTime: [UIImage(named: "Profile")!, caption as AnyObject]])
+                        self.tableView.reloadData()
+                    }
+                }
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
+        
+    }
+    
+    func savePost() {
+        
+        Post.postUserImage(image: takenImage, withCaption: caption) { (success, error) in
+            if success {
+                print("Successfully saved")
+            } else {
+                print("not saved")
+            }
+        }
+        
+    }
+    
+    func getQuery() {
+        
+        let currentUser = PFUser.current()
+        print("Current user: \(currentUser)")
+        print(currentUser!["name"])
+        print("I am here")
+        var armorQuery: PFQuery<PFUser> {
+            return (PFUser.query()!
+                .whereKeyExists("username")
+                .order(byAscending: "createdAt")) as! PFQuery<PFUser>
+        }
+        print("I am here 2")
+        client = ParseLiveQuery.Client()
+        subscription = client.subscribe(armorQuery)
+            // handle creation events, we can also listen for update, leave, enter events
+            .handle(Event.created) { _, user in
+                print("***********")
+                print("\(user.username)")
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+        }
+        
+        print("end of here")
+        
     }
     
     @IBAction func postItem(_ sender: UIBarButtonItem) {
@@ -133,6 +217,8 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
             
             tableView.reloadData()
         }
+        
+        savePost()
         
     }
     

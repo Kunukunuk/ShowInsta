@@ -105,7 +105,7 @@ static NSString *PFDeviceSysctlByName(NSString *name) {
             (int)version.patchVersion];
 #elif PF_TARGET_OS_OSX
     NSProcessInfo *info = [NSProcessInfo processInfo];
-    if (@available(macOS 10.10, *)) {
+    if ([info respondsToSelector:@selector(operatingSystemVersion)]) {
         NSOperatingSystemVersion version = info.operatingSystemVersion;
         return [NSString stringWithFormat:@"%d.%d.%d",
                 (int)version.majorVersion,

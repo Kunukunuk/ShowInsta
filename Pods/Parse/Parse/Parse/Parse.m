@@ -18,7 +18,7 @@
 #import "PFPin.h"
 #import "PFPinningEventuallyQueue.h"
 #import "PFUserPrivate.h"
-#import "PFSystemLogger.h"
+#import "PFLogger.h"
 #import "PFSession.h"
 #import "PFFileManager.h"
 #import "PFApplication.h"
@@ -186,11 +186,11 @@ static ParseClientConfiguration *currentParseConfiguration_;
 ///--------------------------------------
 
 + (void)setLogLevel:(PFLogLevel)logLevel {
-    [PFSystemLogger sharedLogger].logLevel = logLevel;
+    [PFLogger sharedLogger].logLevel = logLevel;
 }
 
 + (PFLogLevel)logLevel {
-    return [PFSystemLogger sharedLogger].logLevel;
+    return [PFLogger sharedLogger].logLevel;
 }
 
 ///--------------------------------------

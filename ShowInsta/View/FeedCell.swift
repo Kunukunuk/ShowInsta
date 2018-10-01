@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import ParseUI
 
 class FeedCell: UITableViewCell {
 
-    @IBOutlet weak var picImageView: UIImageView!
+    @IBOutlet weak var picImageView: PFImageView!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     

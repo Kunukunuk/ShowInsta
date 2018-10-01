@@ -6,8 +6,11 @@ target 'ShowInsta' do
   use_frameworks!
 
   # Pods for ShowInsta
-	pod 'Parse', :git => 'https://github.com/RyanBertrand/Parse-SDK-iOS-OSX', :branch => 'rename-PFFile-and-PFLogger'
+	pod 'Parse'
 	pod 'RSKPlaceholderTextView'
+	pod 'ParseUI'
+
+   	pod 'ParseLiveQuery'
 
   target 'ShowInstaTests' do
     inherit! :search_paths

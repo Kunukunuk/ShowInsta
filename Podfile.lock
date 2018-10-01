@@ -1,35 +1,45 @@
 PODS:
+  - Bolts-Swift (1.3.0)
   - Bolts/Tasks (1.9.0)
   - Parse (1.17.1):
     - Parse/Core (= 1.17.1)
   - Parse/Core (1.17.1):
     - Bolts/Tasks (~> 1.9)
+  - ParseLiveQuery (2.4.0):
+    - Bolts-Swift (~> 1.3.0)
+    - Parse (~> 1.17.0)
+    - Starscream (~> 3.0.4)
+  - ParseUI (1.2.0):
+    - Bolts/Tasks (~> 1.3)
+    - Parse (~> 1.9)
   - RSKPlaceholderTextView (4.0.0)
+  - Starscream (3.0.5)
 
 DEPENDENCIES:
-  - Parse (from `https://github.com/RyanBertrand/Parse-SDK-iOS-OSX`, branch `rename-PFFile-and-PFLogger`)
+  - Parse
+  - ParseLiveQuery
+  - ParseUI
   - RSKPlaceholderTextView
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Bolts
+    - Bolts-Swift
+    - Parse
+    - ParseLiveQuery
+    - ParseUI
     - RSKPlaceholderTextView
-
-EXTERNAL SOURCES:
-  Parse:
-    :branch: rename-PFFile-and-PFLogger
-    :git: https://github.com/RyanBertrand/Parse-SDK-iOS-OSX
-
-CHECKOUT OPTIONS:
-  Parse:
-    :commit: 2e0fc9ee229d5317ee7c784c13853558245d6361
-    :git: https://github.com/RyanBertrand/Parse-SDK-iOS-OSX
+    - Starscream
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  Parse: 63b2b9181fd00cc82c274226f9263f38a91666d5
+  Bolts-Swift: fa98d1b59fc1acea9b21a21306dcdca1c85e3737
+  Parse: d3edaf8c7c722cb33cb83ba7821d015ae32d362d
+  ParseLiveQuery: 0ea078a12015d64070d0ae07da32fae3d3198c42
+  ParseUI: 2b37a0bc692a3e7666cf0c37b5521dfddd74a1af
   RSKPlaceholderTextView: 15f1dc1883e103ea605874b863f19ff6b08496d5
+  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
 
-PODFILE CHECKSUM: cd72fe862c9d33fd785a774ff0fbde1d4a4ca7c2
+PODFILE CHECKSUM: c26a6f23b36758abc792644c8bd474a4d14eee54
 
 COCOAPODS: 1.6.0.beta.1

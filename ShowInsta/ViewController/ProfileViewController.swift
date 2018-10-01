@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class ProfileViewController: UIViewController {
     
@@ -20,5 +21,14 @@ class ProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    func getName() {
+        let currentUser = PFUser.current()
+        
+        if currentUser!["name"] == nil {
+            nameLabel.text = "Name??"
+        } else {
+            nameLabel.text = currentUser!["name"] as? String
+        }
+        //print(currentUser!["name"])
+    }
 }

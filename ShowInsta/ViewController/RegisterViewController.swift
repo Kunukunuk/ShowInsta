@@ -24,11 +24,28 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func registerUser(_ sender: UIButton) {
-        let newUser = PFUser()
         
+        let newUser = PFUser()
+        newUser["name"] = nameTextField.text!
+        //let user = UsersObject()
         newUser.username = usernameField.text
         newUser.password = passwordField.text
-        //newUser.email = emailTextField.text
+        newUser.email = emailTextField.text
+        //user.usersName = nameTextField.text
+        
+        /*user.fetchInBackground { (<#PFObject?#>, <#Error?#>) in
+            <#code#>
+        }*/
+        
+        /*user.saveInBackground { (success, error) in
+            if (success) {
+                print("sucessful")
+                self.performSegue(withIdentifier: "finishedRegister", sender: nil)
+            } else {
+                // There was a problem, check error.description
+                print("unsucessful: ", error?.localizedDescription)
+            }
+        }*/
         
         newUser.signUpInBackground { (success: Bool, error: Error?) in
             if success {
