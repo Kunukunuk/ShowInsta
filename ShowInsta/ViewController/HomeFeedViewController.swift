@@ -280,6 +280,18 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
             PFUser.logOutInBackground { (error: Error?) in
                 // PFUser.current() will now be nil
             }
+        } else if segue.identifier == "details" {
+            let cell = sender as! FeedCell
+            if let indexPath = tableView.indexPath(for: cell) {
+                let post = tableData[indexPath.row]
+                let destinationVC = segue.destination as! DetailsViewController
+                
+                for (key, value) in post {
+                    destinationVC.date = key
+                    destinationVC.picFile = value[0] as? PFFile
+                    destinationVC.caption = value[1] as? String
+                }
+            }
         }
     }
 
