@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import ParseLiveQuery
 
-class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
 
     
     @IBOutlet weak var tableView: UITableView!
@@ -19,10 +19,8 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     var imagePicker = UIImagePickerController()
     var tableData: [[String: [AnyObject]]] = []
     var dates: [String] = []
-    var newData:[PFObject] = []
-    
-    var client : ParseLiveQuery.Client!
-    var subscription : Subscription<PFUser>!
+    var isMoreDataLoading = false
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +33,16 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 120
         
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(HomeFeedViewController.didPullToRefresh(_:)), for: .valueChanged)
+        // add refresh control to table view
+        tableView.insertSubview(refreshControl, at: 0)
+        
+        getPosts()
+    }
+    
+    @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
+        tableData.removeAll()
         getPosts()
     }
     
@@ -49,10 +57,6 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         query?.findObjectsInBackground { (allPosts, error) in
             if error == nil {
                 if let posts = allPosts {
-                    
-                    //let dateFormat = DateFormatter()
-                    //dateFormat.timeZone = TimeZone.current
-                    //dateFormat.dateFormat = "YYYY-MM-DD HH:MM:SS"
                     
                     
                     for post in posts {
@@ -70,6 +74,7 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
                         self.tableData.append([currentDate: [image as AnyObject, caption as AnyObject]])
                         self.tableView.reloadData()
                     }
+                    self.refreshControl.endRefreshing()
                 }
             } else {
                 print(error?.localizedDescription)
@@ -228,6 +233,24 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (!isMoreDataLoading) {
+            // Calculate the position of one screen length before the bottom of the results
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+                
+                isMoreDataLoading = true
+                
+                // Code to load more results
+                tableData.removeAll()
+                getPosts()
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
