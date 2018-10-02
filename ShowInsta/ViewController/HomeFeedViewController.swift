@@ -21,6 +21,8 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     var dates: [String] = []
     var isMoreDataLoading = false
     var refreshControl: UIRefreshControl!
+    var loadingMoreView:InfiniteScrollActivityView?
+    var limit = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,15 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 120
+        
+        let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
+        loadingMoreView = InfiniteScrollActivityView(frame: frame)
+        loadingMoreView!.isHidden = true
+        tableView.addSubview(loadingMoreView!)
+        
+        var insets = tableView.contentInset
+        insets.bottom += InfiniteScrollActivityView.defaultHeight
+        tableView.contentInset = insets
         
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(HomeFeedViewController.didPullToRefresh(_:)), for: .valueChanged)
@@ -52,7 +63,7 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         
         query?.order(byDescending: "createdAt")
         query?.includeKey("author")
-        query?.limit = 20
+        query?.limit = limit
         
         query?.findObjectsInBackground { (allPosts, error) in
             if error == nil {
@@ -75,6 +86,7 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
                         self.tableView.reloadData()
                     }
                     self.refreshControl.endRefreshing()
+                    self.loadingMoreView!.stopAnimating()
                 }
             } else {
                 print(error?.localizedDescription)
@@ -193,6 +205,28 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         return cell
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let scrollViewContentHeight = tableView.contentSize.height
+        let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+            
+            isMoreDataLoading = true
+            
+            let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
+            loadingMoreView?.frame = frame
+            loadingMoreView!.startAnimating()
+            
+            // ... Code to load more results ...
+            tableData.removeAll()
+            limit += 20
+            getPosts()
+        }
+    }
+
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
@@ -209,11 +243,11 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     
     @IBAction func unwindToHomeFeedShare(_ segue: UIStoryboardSegue) {
         
-        let currentTime = NSDate()
+        /*let currentTime = NSDate()
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "YYYY-MM-DD HH:MM:SS"
         
-        let currentDateTime = dateFormat.string(from: currentTime as Date)
+        let currentDateTime = dateFormat.string(from: currentTime as Date)*/
         
         if let itemVC = segue.source as? ItemViewController {
             
@@ -233,24 +267,6 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (!isMoreDataLoading) {
-            // Calculate the position of one screen length before the bottom of the results
-            let scrollViewContentHeight = tableView.contentSize.height
-            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
-            
-            // When the user has scrolled past the threshold, start requesting
-            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
-                
-                isMoreDataLoading = true
-                
-                // Code to load more results
-                tableData.removeAll()
-                getPosts()
-            }
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

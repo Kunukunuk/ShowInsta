@@ -18,6 +18,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         profileImageView.image = UIImage(named: "Profile")
+        getName()
         // Do any additional setup after loading the view.
     }
     
