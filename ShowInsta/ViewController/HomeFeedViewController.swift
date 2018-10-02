@@ -44,27 +44,30 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         
         query?.order(byDescending: "createdAt")
         query?.includeKey("author")
-        query?.includeKey("createdAt")
         query?.limit = 20
         
         query?.findObjectsInBackground { (allPosts, error) in
             if error == nil {
                 if let posts = allPosts {
-                    let object = allPosts!.first
-                    let date = object?.createdAt
                     
-                    let dateFormat = DateFormatter()
-                    dateFormat.dateFormat = "YYYY-MM-DD HH:MM:SS"
+                    //let dateFormat = DateFormatter()
+                    //dateFormat.timeZone = TimeZone.current
+                    //dateFormat.dateFormat = "YYYY-MM-DD HH:MM:SS"
                     
-                    let currentDateTime = dateFormat.string(from: date!)
-                    print("currentDate: \(currentDateTime)")
                     
                     for post in posts {
-                    
+                        
+                        let date = post.createdAt
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss a" //Input Format
+                        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+                        let stringDate = dateFormatter.string(from: date!)
+                        let currentDate = self.UTCToLocal(UTCDateString: stringDate)
+                        
                         let caption = post["caption"] as! String
                         let image = post["media"]
     
-                        self.tableData.append(["\(date!)": [image as AnyObject, caption as AnyObject]])
+                        self.tableData.append([currentDate: [image as AnyObject, caption as AnyObject]])
                         self.tableView.reloadData()
                     }
                 }
@@ -73,6 +76,17 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
             }
         }
         
+    }
+    
+    func UTCToLocal(UTCDateString: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss a" //Input Format
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        let UTCDate = dateFormatter.date(from: UTCDateString)
+        dateFormatter.dateFormat = "yyyy-MMM-dd hh:mm:ss a" // Output Format
+        dateFormatter.timeZone = TimeZone.current
+        let UTCToCurrentFormat = dateFormatter.string(from: UTCDate!)
+        return UTCToCurrentFormat
     }
     
     func resize(image: UIImage, newSize: CGSize) -> UIImage {
