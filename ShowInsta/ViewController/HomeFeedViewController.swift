@@ -36,8 +36,6 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         tableView.estimatedRowHeight = 120
         
         getPosts()
-        getQuery()
-        // Do any additional setup after loading the view.
     }
     
     func getPosts() {
@@ -52,22 +50,21 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         query?.findObjectsInBackground { (allPosts, error) in
             if error == nil {
                 if let posts = allPosts {
-                    let object = posts.first
+                    let object = allPosts!.first
                     let date = object?.createdAt
                     
                     let dateFormat = DateFormatter()
                     dateFormat.dateFormat = "YYYY-MM-DD HH:MM:SS"
                     
                     let currentDateTime = dateFormat.string(from: date!)
+                    print("currentDate: \(currentDateTime)")
                     
-                    self.newData = posts
-                    print("post: \(posts)")
-                    print("newData: \(self.newData)")
-                    print("newData: \(self.newData.count)")
                     for post in posts {
+                    
                         let caption = post["caption"] as! String
-                        self.dates.append(currentDateTime)
-                        self.tableData.append([currentDateTime: [UIImage(named: "Profile")!, caption as AnyObject]])
+                        let image = post["media"]
+    
+                        self.tableData.append(["\(date!)": [image as AnyObject, caption as AnyObject]])
                         self.tableView.reloadData()
                     }
                 }
@@ -78,42 +75,31 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         
     }
     
+    func resize(image: UIImage, newSize: CGSize) -> UIImage {
+        let resizeImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        resizeImageView.contentMode = UIView.ContentMode.scaleAspectFill
+        resizeImageView.image = image
+        
+        UIGraphicsBeginImageContext(resizeImageView.frame.size)
+        resizeImageView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+    
     func savePost() {
+        
+        takenImage = resize(image: takenImage!, newSize: CGSize(width: 1000, height: 1000))
         
         Post.postUserImage(image: takenImage, withCaption: caption) { (success, error) in
             if success {
-                print("Successfully saved")
+                
+                self.getPosts()
+                self.tableView.reloadData()
             } else {
                 print("not saved")
             }
         }
-        
-    }
-    
-    func getQuery() {
-        
-        let currentUser = PFUser.current()
-        print("Current user: \(currentUser)")
-        print(currentUser!["name"])
-        print("I am here")
-        var armorQuery: PFQuery<PFUser> {
-            return (PFUser.query()!
-                .whereKeyExists("username")
-                .order(byAscending: "createdAt")) as! PFQuery<PFUser>
-        }
-        print("I am here 2")
-        client = ParseLiveQuery.Client()
-        subscription = client.subscribe(armorQuery)
-            // handle creation events, we can also listen for update, leave, enter events
-            .handle(Event.created) { _, user in
-                print("***********")
-                print("\(user.username)")
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-        }
-        
-        print("end of here")
         
     }
     
@@ -167,14 +153,17 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         if !tableData.isEmpty {
             let date = tableData[indexPath.row]
             
-            let key = date[dates[indexPath.row]]
+            for (key, value) in date {
+                
+                let img = value[0] as? PFFile
+                let cap = value[1] as! String
+                
+                cell.picImageView.file = img
+                cell.picImageView.loadInBackground()
+                cell.captionLabel.text = cap
+                cell.dateLabel.text = key
+            }
             
-            let img = key![0] as! UIImage
-            let cap = key![1] as! String
-            
-            cell.picImageView.image = img
-            cell.captionLabel.text = cap
-            cell.dateLabel.text = dates[indexPath.row]
             
         } else {
             cell.picImageView.image = UIImage(named: "image_placeholder")
@@ -212,14 +201,15 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
             takenImage = itemVC.takenImage
             caption = itemVC.captionTextView.text
             
-            dates.append(currentDateTime)
-            tableData.append([currentDateTime: [takenImage!, caption! as AnyObject]])
+            //dates.append(currentDateTime)
+            //tableData.append([currentDateTime: [takenImage!, caption! as AnyObject]])
             
-            tableView.reloadData()
+            //tableView.reloadData()
+            
         }
         
         savePost()
-        
+        tableData.removeAll()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
