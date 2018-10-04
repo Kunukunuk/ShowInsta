@@ -35,18 +35,36 @@ class LoginViewController: UIViewController {
         }
     }
     
+    func loginAlert(with message: String? = "Email or password is empty") {
+        
+        let alertController = UIAlertController(title: "Invalid Login", message: "\(message!)", preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        alertController.addAction(OKAction)
+        present(alertController, animated: true)
+    }
+    
     @IBAction func signIn(_ sender: UIButton) {
         
         let username = usernameField.text ?? ""
         let password = passwordField.text ?? ""
         
-        PFUser.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: Error?) in
-            if let error = error {
-                print("User log in failed: \(error.localizedDescription)")
-            } else {
-                print("User logged in successfully")
-                // display view controller that needs to shown after successful login
-                self.performSegue(withIdentifier: "loginSegue", sender: nil)
+        if username.isEmpty || password.isEmpty {
+            loginAlert()
+        } else {
+        
+            PFUser.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: Error?) in
+                if let error = error {
+                    print("User log in failed: \(error.localizedDescription)")
+                    self.loginAlert(with: error.localizedDescription)
+                } else {
+                    print("User logged in successfully")
+                    // display view controller that needs to shown after successful login
+                    self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                }
             }
         }
     }

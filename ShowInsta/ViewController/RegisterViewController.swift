@@ -23,6 +23,18 @@ class RegisterViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func registerAlert(reason: String) {
+        
+        let alertController = UIAlertController(title: "Registration Error", message: "Can't register this account because \(reason)", preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        alertController.addAction(OKAction)
+        present(alertController, animated: true)
+    }
+    
     @IBAction func registerUser(_ sender: UIButton) {
         
         let newUser = PFUser()
@@ -53,6 +65,7 @@ class RegisterViewController: UIViewController {
                 self.performSegue(withIdentifier: "finishedRegister", sender: nil)
             } else {
                 print(error?.localizedDescription)
+                self.registerAlert(reason: error!.localizedDescription)
             }
         }
     }
