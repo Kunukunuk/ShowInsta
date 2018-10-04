@@ -53,7 +53,7 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     }
     
     @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
-        tableData.removeAll()
+        
         getPosts()
     }
     
@@ -69,6 +69,8 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
             if error == nil {
                 if let posts = allPosts {
                     
+                    self.tableData.removeAll()
+                    self.isMoreDataLoading = false
                     
                     for post in posts {
                         
@@ -81,8 +83,9 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
                         
                         let caption = post["caption"] as! String
                         let image = post["media"]
-    
+                        
                         self.tableData.append([currentDate: [image as AnyObject, caption as AnyObject]])
+
                         self.tableView.reloadData()
                     }
                     self.refreshControl.endRefreshing()
@@ -220,7 +223,6 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
             loadingMoreView!.startAnimating()
             
             // ... Code to load more results ...
-            tableData.removeAll()
             limit += 20
             getPosts()
         }
@@ -262,7 +264,6 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         }
         
         savePost()
-        tableData.removeAll()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
