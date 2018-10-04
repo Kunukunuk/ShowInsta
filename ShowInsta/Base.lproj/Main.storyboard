@@ -184,12 +184,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qmQ-nh-mHe">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qmQ-nh-mHe">
                                 <rect key="frame" x="10" y="74" width="100" height="100"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="XQh-BN-JGg"/>
                                     <constraint firstAttribute="height" constant="100" id="dz2-Kp-eH4"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="V6I-H5-3A8" appends="YES" id="fS4-1z-S23"/>
+                                </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFu-Hs-vSp">
                                 <rect key="frame" x="130" y="74" width="225" height="50"/>
@@ -221,6 +225,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aJn-C0-lyn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="V6I-H5-3A8">
+                    <connections>
+                        <action selector="changeProfilePic:" destination="Pqa-2H-jlp" id="ReJ-OX-1MV"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2964" y="939.58020989505258"/>
         </scene>

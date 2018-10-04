@@ -22,6 +22,11 @@ class ProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
+    @IBAction func changeProfilePic(_ sender: UITapGestureRecognizer) {
+        print("hello")
+    }
+    
     func getName() {
         let currentUser = PFUser.current()
         
