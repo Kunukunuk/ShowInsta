@@ -22,6 +22,7 @@ class DetailsViewController: UIViewController {
     var picFile: PFFile?
     var likeCount: Int = 0
     var commentCount: Int = 0
+    var post: PFObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +31,17 @@ class DetailsViewController: UIViewController {
         photoImageView.loadInBackground()
         dateLabel.text = date
         captionLabel.text = caption
+        likeCounts.text = String(likeCount)
+        commentCounts.text = String(commentCount)
         getName()
+        print("post: \(post)")
         // Do any additional setup after loading the view.
     }
     
     @IBAction func likeButton(_ sender: UIButton) {
         likeCount += 1
         likeCounts.text = "\(likeCount)"
+        savePostCounts()
     }
     
     @IBAction func commentButton(_ sender: UIButton) {
@@ -53,6 +58,18 @@ class DetailsViewController: UIViewController {
             nameLabel.text = currentUser!["name"] as? String
         }
         //print(currentUser!["name"])
+    }
+    
+    func savePostCounts() {
+        post!["likesCount"] = likeCount
+        
+        post?.saveInBackground(block: { (success, error) in
+            if success {
+                print("like count saved")
+            } else {
+                print("error with saving count")
+            }
+        })
     }
     /*
     // MARK: - Navigation

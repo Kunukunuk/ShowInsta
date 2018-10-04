@@ -19,6 +19,7 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     var imagePicker = UIImagePickerController()
     var tableData: [[String: [AnyObject]]] = []
     var dates: [String] = []
+    var posts: [PFObject] = []
     var isMoreDataLoading = false
     var refreshControl: UIRefreshControl!
     var loadingMoreView:InfiniteScrollActivityView?
@@ -74,6 +75,7 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
                     
                     for post in posts {
                         
+                        self.posts.append(post)
                         let date = post.createdAt
                         let dateFormatter = DateFormatter()
                         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss a" //Input Format
@@ -285,7 +287,13 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
             let cell = sender as! FeedCell
             if let indexPath = tableView.indexPath(for: cell) {
                 let post = tableData[indexPath.row]
+                let postInDetails = self.posts[indexPath.row]
+                
                 let destinationVC = segue.destination as! DetailsViewController
+                
+                destinationVC.post = postInDetails
+                destinationVC.likeCount = postInDetails["likesCount"] as! Int
+                destinationVC.commentCount = postInDetails["commentsCount"] as! Int
                 
                 for (key, value) in post {
                     destinationVC.date = key
