@@ -12,6 +12,7 @@ PODS:
   - ParseUI (1.2.0):
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
+  - ProgressHUD (2.60)
   - RSKPlaceholderTextView (4.0.0)
   - Starscream (3.0.5)
 
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - Parse
   - ParseLiveQuery
   - ParseUI
+  - ProgressHUD
   - RSKPlaceholderTextView
 
 SPEC REPOS:
@@ -28,6 +30,7 @@ SPEC REPOS:
     - Parse
     - ParseLiveQuery
     - ParseUI
+    - ProgressHUD
     - RSKPlaceholderTextView
     - Starscream
 
@@ -37,9 +40,10 @@ SPEC CHECKSUMS:
   Parse: d3edaf8c7c722cb33cb83ba7821d015ae32d362d
   ParseLiveQuery: 0ea078a12015d64070d0ae07da32fae3d3198c42
   ParseUI: 2b37a0bc692a3e7666cf0c37b5521dfddd74a1af
+  ProgressHUD: 4e4efbaf4f5de8bd32e0c4c3b6644a90ea1a8c3e
   RSKPlaceholderTextView: 15f1dc1883e103ea605874b863f19ff6b08496d5
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
 
-PODFILE CHECKSUM: c26a6f23b36758abc792644c8bd474a4d14eee54
+PODFILE CHECKSUM: 6c22eb990f0148fe8b23dc65c70eb388665f77c7
 
 COCOAPODS: 1.6.0.beta.1

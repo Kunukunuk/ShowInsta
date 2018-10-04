@@ -383,6 +383,7 @@
 				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
 				"${BUILT_PRODUCTS_DIR}/ParseLiveQuery/ParseLiveQuery.framework",
 				"${BUILT_PRODUCTS_DIR}/ParseUI/ParseUI.framework",
+				"${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/RSKPlaceholderTextView/RSKPlaceholderTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
@@ -395,6 +396,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ParseLiveQuery.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ParseUI.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSKPlaceholderTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);

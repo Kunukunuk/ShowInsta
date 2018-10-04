@@ -9,7 +9,7 @@ target 'ShowInsta' do
 	pod 'Parse'
 	pod 'RSKPlaceholderTextView'
 	pod 'ParseUI'
-
+	pod 'ProgressHUD'
    	pod 'ParseLiveQuery'
 
   target 'ShowInstaTests' do
