@@ -1,6 +1,7 @@
 PODS:
   - Bolts-Swift (1.3.0)
   - Bolts/Tasks (1.9.0)
+  - MBProgressHUD (1.1.0)
   - Parse (1.17.1):
     - Parse/Core (= 1.17.1)
   - Parse/Core (1.17.1):
@@ -12,38 +13,37 @@ PODS:
   - ParseUI (1.2.0):
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
-  - ProgressHUD (2.60)
   - RSKPlaceholderTextView (4.0.0)
   - Starscream (3.0.5)
 
 DEPENDENCIES:
+  - MBProgressHUD
   - Parse
   - ParseLiveQuery
   - ParseUI
-  - ProgressHUD
   - RSKPlaceholderTextView
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Bolts
     - Bolts-Swift
+    - MBProgressHUD
     - Parse
     - ParseLiveQuery
     - ParseUI
-    - ProgressHUD
     - RSKPlaceholderTextView
     - Starscream
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Bolts-Swift: fa98d1b59fc1acea9b21a21306dcdca1c85e3737
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   Parse: d3edaf8c7c722cb33cb83ba7821d015ae32d362d
   ParseLiveQuery: 0ea078a12015d64070d0ae07da32fae3d3198c42
   ParseUI: 2b37a0bc692a3e7666cf0c37b5521dfddd74a1af
-  ProgressHUD: 4e4efbaf4f5de8bd32e0c4c3b6644a90ea1a8c3e
   RSKPlaceholderTextView: 15f1dc1883e103ea605874b863f19ff6b08496d5
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
 
-PODFILE CHECKSUM: 6c22eb990f0148fe8b23dc65c70eb388665f77c7
+PODFILE CHECKSUM: 135ad65a425a42df2b127013babd46b0967b4c3a
 
 COCOAPODS: 1.6.0.beta.1

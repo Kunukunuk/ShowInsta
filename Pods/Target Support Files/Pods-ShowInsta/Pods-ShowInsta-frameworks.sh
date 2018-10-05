@@ -150,20 +150,20 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Bolts-Swift/BoltsSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ParseLiveQuery/ParseLiveQuery.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ParseUI/ParseUI.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RSKPlaceholderTextView/RSKPlaceholderTextView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Bolts-Swift/BoltsSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ParseLiveQuery/ParseLiveQuery.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ParseUI/ParseUI.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RSKPlaceholderTextView/RSKPlaceholderTextView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework"
 fi
