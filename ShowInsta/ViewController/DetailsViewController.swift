@@ -35,7 +35,7 @@ class DetailsViewController: UIViewController {
         likeCounts.text = String(likeCount)
         commentCounts.text = String(commentCount)
         getName()
-        print("post: \(post)")
+        commentsLabel.text = ""
         // Do any additional setup after loading the view.
     }
     
@@ -47,8 +47,6 @@ class DetailsViewController: UIViewController {
     
     @IBAction func commentButton(_ sender: UIButton) {
         commentBox()
-        //commentCount += 1
-        //commentCounts.text = "\(commentCount)"
     }
     
     func getName() {
@@ -86,7 +84,11 @@ class DetailsViewController: UIViewController {
         let sourceViewController = unwindSegue.source as? CommentViewController
         
         let comment = sourceViewController?.commentTextView.text
-        print("comment: \(comment)")
+        //commentsLabel.text = "\(comment!) \n"
+        
+        commentsLabel.text?.append("\(comment!) \n")
+        commentCount += 1
+        commentCounts.text = "\(commentCount)"
         // Use data from the view controller which initiated the unwind segue
     }
     /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
