@@ -17,6 +17,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var commentCounts: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var commentsLabel: UILabel!
     var date: String?
     var caption: String?
     var picFile: PFFile?
