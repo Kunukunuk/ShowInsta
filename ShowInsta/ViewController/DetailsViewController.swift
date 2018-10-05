@@ -45,8 +45,9 @@ class DetailsViewController: UIViewController {
     }
     
     @IBAction func commentButton(_ sender: UIButton) {
-        commentCount += 1
-        commentCounts.text = "\(commentCount)"
+        commentBox()
+        //commentCount += 1
+        //commentCounts.text = "\(commentCount)"
     }
     
     func getName() {
@@ -71,14 +72,26 @@ class DetailsViewController: UIViewController {
             }
         })
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func commentBox() {
+        self.performSegue(withIdentifier: "commentBox", sender: nil)
     }
-    */
+    
+    @IBAction func unwindToDetailsCancelComment(_ unwindSegue: UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func unwindToDetailsPostComment(_ unwindSegue: UIStoryboardSegue) {
+        let sourceViewController = unwindSegue.source as? CommentViewController
+        
+        let comment = sourceViewController?.commentTextView.text
+        print("comment: \(comment)")
+        // Use data from the view controller which initiated the unwind segue
+    }
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "commentBox" {
+            
+        }
+    }*/
 
 }
