@@ -21,8 +21,8 @@ class DetailsViewController: UIViewController {
     var date: String?
     var caption: String?
     var picFile: PFFile?
-    var likeCount: Int = 0
-    var commentCount: Int = 0
+    var likesCount: Int = 0
+    var commentsCount: Int = 0
     var post: PFObject?
     
     override func viewDidLoad() {
@@ -32,16 +32,17 @@ class DetailsViewController: UIViewController {
         photoImageView.loadInBackground()
         dateLabel.text = date
         captionLabel.text = caption
-        likeCounts.text = String(likeCount)
-        commentCounts.text = String(commentCount)
+        likeCounts.text = String(likesCount)
+        commentCounts.text = String(commentsCount)
         getName()
         commentsLabel.text = ""
+        getComments()
         // Do any additional setup after loading the view.
     }
     
     @IBAction func likeButton(_ sender: UIButton) {
-        likeCount += 1
-        likeCounts.text = "\(likeCount)"
+        likesCount += 1
+        likeCounts.text = "\(likesCount)"
         savePostCounts()
     }
     
@@ -60,8 +61,20 @@ class DetailsViewController: UIViewController {
         //print(currentUser!["name"])
     }
     
+    func getComments() {
+        if post!["comment"] != nil {
+            print("in comments")
+            commentsLabel.text = post!["comment"] as? String
+        } else {
+            print("in no comments")
+            commentsLabel.text = ""
+        }
+    }
+    
     func savePostCounts() {
-        post!["likesCount"] = likeCount
+        post!["likesCount"] = likesCount
+        post!["commentsCount"] = commentsCount
+        post!["comment"] = commentsLabel.text
         
         post?.saveInBackground(block: { (success, error) in
             if success {
@@ -87,8 +100,9 @@ class DetailsViewController: UIViewController {
         //commentsLabel.text = "\(comment!) \n"
         
         commentsLabel.text?.append("\(comment!) \n")
-        commentCount += 1
-        commentCounts.text = "\(commentCount)"
+        commentsCount += 1
+        commentCounts.text = "\(commentsCount)"
+        savePostCounts()
         // Use data from the view controller which initiated the unwind segue
     }
     /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

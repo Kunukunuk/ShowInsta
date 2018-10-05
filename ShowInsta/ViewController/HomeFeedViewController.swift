@@ -292,8 +292,8 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
                 let destinationVC = segue.destination as! DetailsViewController
                 
                 destinationVC.post = postInDetails
-                destinationVC.likeCount = postInDetails["likesCount"] as! Int
-                destinationVC.commentCount = postInDetails["commentsCount"] as! Int
+                destinationVC.likesCount = postInDetails["likesCount"] as! Int
+                destinationVC.commentsCount = postInDetails["commentsCount"] as! Int
                 
                 for (key, value) in post {
                     destinationVC.date = key
