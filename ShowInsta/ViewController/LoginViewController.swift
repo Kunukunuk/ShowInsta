@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    var isHidden = false
+    var isHidden = true
     
     
     override func viewDidLoad() {
