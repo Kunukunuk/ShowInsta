@@ -9,12 +9,12 @@
 import UIKit
 import Parse
 
-class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var summary: UILabel!
-    
+    @IBOutlet weak var collectionView: UICollectionView!
     var imagePicker = UIImagePickerController()
     var takenProfile: UIImage?
     
@@ -23,12 +23,24 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         
         imagePicker.delegate = self
         profileImageView.image = UIImage(named: "Profile")
+        
+        collectionView.dataSource = self
         getName()
         // Do any additional setup after loading the view.
     }
     
     func setProfilePicture() {
         profileImageView.image = takenProfile
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCell", for: indexPath)
+        
+        return cell
     }
     
     func alertSheet() {

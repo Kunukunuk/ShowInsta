@@ -220,14 +220,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gm4-dH-CmN">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProfileCell" id="gm4-dH-CmN" customClass="ProfileCell" customModule="ShowInsta" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="120" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="120" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="05W-aK-hsB">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="05W-aK-hsB" customClass="PFImageView">
                                                     <rect key="frame" x="11" y="31" width="98" height="108"/>
                                                 </imageView>
                                             </subviews>
@@ -238,6 +238,9 @@
                                             <constraint firstAttribute="trailingMargin" secondItem="05W-aK-hsB" secondAttribute="trailing" constant="3" id="cK8-YG-UzO"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="05W-aK-hsB" secondAttribute="bottom" constant="3" id="qY5-E0-YfB"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="userPhotoImage" destination="05W-aK-hsB" id="LSq-Hb-Ooq"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -268,6 +271,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="collectionView" destination="RZe-AE-54d" id="Np0-ek-oOy"/>
                         <outlet property="nameLabel" destination="DFu-Hs-vSp" id="GjL-vB-rTS"/>
                         <outlet property="profileImageView" destination="qmQ-nh-mHe" id="3Zu-dE-me6"/>
                         <outlet property="summary" destination="TUm-uM-Tl7" id="jC9-dM-br5"/>
