@@ -13,6 +13,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var summary: UILabel!
+    
     var imagePicker = UIImagePickerController()
     var takenProfile: UIImage?
     

@@ -198,20 +198,29 @@
                                     <outletCollection property="gestureRecognizers" destination="V6I-H5-3A8" appends="YES" id="fS4-1z-S23"/>
                                 </connections>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFu-Hs-vSp">
-                                <rect key="frame" x="130" y="74" width="225" height="50"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFu-Hs-vSp">
+                                <rect key="frame" x="130" y="74" width="225" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUm-uM-Tl7">
+                                <rect key="frame" x="130" y="109" width="225" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="TUm-uM-Tl7" firstAttribute="leading" secondItem="qmQ-nh-mHe" secondAttribute="trailing" constant="20" id="0MJ-WN-S6X"/>
                             <constraint firstItem="qmQ-nh-mHe" firstAttribute="leading" secondItem="MnY-Sg-mZg" secondAttribute="leading" constant="10" id="CDk-V3-Vfd"/>
                             <constraint firstItem="DFu-Hs-vSp" firstAttribute="top" secondItem="MnY-Sg-mZg" secondAttribute="top" constant="10" id="Ea6-Ou-ywT"/>
                             <constraint firstItem="MnY-Sg-mZg" firstAttribute="trailing" secondItem="DFu-Hs-vSp" secondAttribute="trailing" constant="20" id="L19-ic-xhD"/>
+                            <constraint firstItem="TUm-uM-Tl7" firstAttribute="top" secondItem="DFu-Hs-vSp" secondAttribute="bottom" constant="5" id="NOX-g4-7TR"/>
                             <constraint firstItem="qmQ-nh-mHe" firstAttribute="top" secondItem="MnY-Sg-mZg" secondAttribute="top" constant="10" id="Nez-Bm-TgG"/>
                             <constraint firstItem="DFu-Hs-vSp" firstAttribute="leading" secondItem="qmQ-nh-mHe" secondAttribute="trailing" constant="20" id="fUd-Ux-cHe"/>
+                            <constraint firstItem="MnY-Sg-mZg" firstAttribute="trailing" secondItem="TUm-uM-Tl7" secondAttribute="trailing" constant="20" id="lzl-x2-ani"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MnY-Sg-mZg"/>
                     </view>
@@ -225,6 +234,7 @@
                     <connections>
                         <outlet property="nameLabel" destination="DFu-Hs-vSp" id="GjL-vB-rTS"/>
                         <outlet property="profileImageView" destination="qmQ-nh-mHe" id="3Zu-dE-me6"/>
+                        <outlet property="summary" destination="TUm-uM-Tl7" id="jC9-dM-br5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aJn-C0-lyn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -308,7 +318,23 @@
                     <view key="view" contentMode="scaleToFill" id="eyk-nj-fGN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vmf-bW-xLJ" customClass="RSKPlaceholderTextView" customModule="RSKPlaceholderTextView">
+                                <rect key="frame" x="10" y="78" width="355" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Write your summary"/>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vmf-bW-xLJ" firstAttribute="leading" secondItem="WHo-m6-ZJq" secondAttribute="leading" constant="10" id="Tm8-FQ-1SK"/>
+                            <constraint firstItem="vmf-bW-xLJ" firstAttribute="top" secondItem="WHo-m6-ZJq" secondAttribute="top" constant="10" id="hXu-sy-Tnb"/>
+                            <constraint firstItem="WHo-m6-ZJq" firstAttribute="trailing" secondItem="vmf-bW-xLJ" secondAttribute="trailing" constant="10" id="pi3-2U-13g"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="WHo-m6-ZJq"/>
                     </view>
                 </viewController>
