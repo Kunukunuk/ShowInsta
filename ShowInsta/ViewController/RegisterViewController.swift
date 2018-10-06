@@ -52,9 +52,11 @@ class RegisterViewController: UIViewController {
             if success {
                 print("created new user")
                 self.performSegue(withIdentifier: "finishedRegister", sender: nil)
+                loading.hide(animated: true)
             } else {
                 print(error?.localizedDescription)
                 self.registerAlert(reason: error!.localizedDescription)
+                loading.hide(animated: true)
             }
         }
     }
