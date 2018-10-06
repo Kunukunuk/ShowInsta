@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseLiveQuery
+import MBProgressHUD
 
 class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
 
@@ -68,6 +69,8 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         
         query?.findObjectsInBackground { (allPosts, error) in
             if error == nil {
+                let loading = MBProgressHUD.showAdded(to: self.view, animated: true)
+                loading.label.text = "Retrieving post(s)"
                 if let posts = allPosts {
                     
                     self.tableData.removeAll()
@@ -90,11 +93,13 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
 
                         self.tableView.reloadData()
                     }
+                    loading.hide(animated: true)
                     self.refreshControl.endRefreshing()
                     self.loadingMoreView!.stopAnimating()
                 }
             } else {
                 print(error?.localizedDescription)
+                
             }
         }
         
@@ -127,13 +132,18 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         
         takenImage = resize(image: takenImage!, newSize: CGSize(width: 1000, height: 1000))
         
+        let loading = MBProgressHUD.showAdded(to: self.view, animated: true )
+        loading.label.text = "Saving post(s)"
         Post.postUserImage(image: takenImage, withCaption: caption) { (success, error) in
             if success {
                 
                 self.getPosts()
+                
+                loading.hide(animated: true)
                 self.tableView.reloadData()
             } else {
                 print("not saved")
+                loading.hide(animated: true)
             }
         }
         
