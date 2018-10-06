@@ -8,6 +8,7 @@
 
 import UIKit
 import ParseUI
+import MBProgressHUD
 
 class DetailsViewController: UIViewController {
 
@@ -76,11 +77,15 @@ class DetailsViewController: UIViewController {
         post!["commentsCount"] = commentsCount
         post!["comment"] = commentsLabel.text
         
+        let loading = MBProgressHUD.showAdded(to: self.view, animated: true)
+        loading.label.text = "Saving likes or comment"
         post?.saveInBackground(block: { (success, error) in
             if success {
                 print("like count saved")
+                loading.hide(animated: true)
             } else {
                 print("error with saving count")
+                loading.hide(animated: true)
             }
         })
     }
