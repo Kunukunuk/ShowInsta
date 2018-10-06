@@ -56,15 +56,22 @@ class LoginViewController: UIViewController {
         if username.isEmpty || password.isEmpty {
             loginAlert()
         } else {
-        
+            
+            let loading = MBProgressHUD.showAdded(to: self.view, animated: true)
+            loading.label.text = "Logging in"
+            //MBProgressHUD.showAdded(to: self.view, animated: true)
             PFUser.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: Error?) in
                 if let error = error {
                     print("User log in failed: \(error.localizedDescription)")
                     self.loginAlert(with: error.localizedDescription)
+                    loading.hide(animated: true)
+                    //loading.hide(for: self.view, animated: true)
                 } else {
                     print("User logged in successfully")
                     // display view controller that needs to shown after successful login
                     self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                    loading.hide(animated: true)
+                    //loading.hide(for: self.view, animated: true)
                 }
             }
         }

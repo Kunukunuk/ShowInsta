@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import MBProgressHUD
 
 class RegisterViewController: UIViewController {
     
@@ -39,25 +40,13 @@ class RegisterViewController: UIViewController {
         
         let newUser = PFUser()
         newUser["name"] = nameTextField.text!
-        //let user = UsersObject()
+        
         newUser.username = usernameField.text
         newUser.password = passwordField.text
         newUser.email = emailTextField.text
-        //user.usersName = nameTextField.text
         
-        /*user.fetchInBackground { (<#PFObject?#>, <#Error?#>) in
-            <#code#>
-        }*/
-        
-        /*user.saveInBackground { (success, error) in
-            if (success) {
-                print("sucessful")
-                self.performSegue(withIdentifier: "finishedRegister", sender: nil)
-            } else {
-                // There was a problem, check error.description
-                print("unsucessful: ", error?.localizedDescription)
-            }
-        }*/
+        let loading = MBProgressHUD.showAdded(to: self.view, animated: true)
+        loading.label.text = "Registering user"
         
         newUser.signUpInBackground { (success: Bool, error: Error?) in
             if success {
