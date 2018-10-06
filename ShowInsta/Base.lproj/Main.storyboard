@@ -205,7 +205,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUm-uM-Tl7">
-                                <rect key="frame" x="130" y="109" width="225" height="24"/>
+                                <rect key="frame" x="10" y="184" width="355" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -213,14 +213,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="TUm-uM-Tl7" firstAttribute="leading" secondItem="qmQ-nh-mHe" secondAttribute="trailing" constant="20" id="0MJ-WN-S6X"/>
+                            <constraint firstItem="TUm-uM-Tl7" firstAttribute="leading" secondItem="qmQ-nh-mHe" secondAttribute="leading" id="87D-t1-Lhi"/>
                             <constraint firstItem="qmQ-nh-mHe" firstAttribute="leading" secondItem="MnY-Sg-mZg" secondAttribute="leading" constant="10" id="CDk-V3-Vfd"/>
                             <constraint firstItem="DFu-Hs-vSp" firstAttribute="top" secondItem="MnY-Sg-mZg" secondAttribute="top" constant="10" id="Ea6-Ou-ywT"/>
+                            <constraint firstItem="TUm-uM-Tl7" firstAttribute="top" secondItem="qmQ-nh-mHe" secondAttribute="bottom" constant="10" id="GQM-Ij-vxw"/>
                             <constraint firstItem="MnY-Sg-mZg" firstAttribute="trailing" secondItem="DFu-Hs-vSp" secondAttribute="trailing" constant="20" id="L19-ic-xhD"/>
-                            <constraint firstItem="TUm-uM-Tl7" firstAttribute="top" secondItem="DFu-Hs-vSp" secondAttribute="bottom" constant="5" id="NOX-g4-7TR"/>
                             <constraint firstItem="qmQ-nh-mHe" firstAttribute="top" secondItem="MnY-Sg-mZg" secondAttribute="top" constant="10" id="Nez-Bm-TgG"/>
+                            <constraint firstItem="MnY-Sg-mZg" firstAttribute="trailing" secondItem="TUm-uM-Tl7" secondAttribute="trailing" constant="10" id="VWV-CR-WhD"/>
                             <constraint firstItem="DFu-Hs-vSp" firstAttribute="leading" secondItem="qmQ-nh-mHe" secondAttribute="trailing" constant="20" id="fUd-Ux-cHe"/>
-                            <constraint firstItem="MnY-Sg-mZg" firstAttribute="trailing" secondItem="TUm-uM-Tl7" secondAttribute="trailing" constant="20" id="lzl-x2-ani"/>
+                            <constraint firstItem="TUm-uM-Tl7" firstAttribute="leading" secondItem="MnY-Sg-mZg" secondAttribute="leading" constant="10" id="xsS-nh-lij"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MnY-Sg-mZg"/>
                     </view>
