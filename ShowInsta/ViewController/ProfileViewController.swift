@@ -27,12 +27,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         
         collectionView.dataSource = self
         getName()
-        
+        getProfilePic()
         // Do any additional setup after loading the view.
-    }
-    
-    func setProfilePicture() {
-        profileImageView.image = takenProfile
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -86,7 +82,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         }
         imagePicker.dismiss(animated: true, completion: nil)
         
-        setProfilePicture()
+        saveProfilePhoto()
     }
     
     func getName() {
@@ -103,6 +99,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         
         let currentUser = PFUser.current()
         
+        print(currentUser)
+        
         if currentUser!["avatar"] != nil {
             profileImageView.file = currentUser!["avatar"] as? PFFile
             profileImageView.loadInBackground()
@@ -112,16 +110,16 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     //Mark save user profile picture
 
     func saveProfilePhoto() {
-        let currentUser = PFUser.current()
         
         let imgData = takenProfile?.pngData()
-        currentUser!["avatar"] = PFFile(name: "profile.png", data: imgData!)
+        PFUser.current()!["avatar"] = PFFile(name: "profile.png", data: imgData!)
         
-        currentUser?.saveInBackground(block: { (success, error) in
+        PFUser.current()!.saveInBackground(block: { (success, error) in
             if success {
                 print("profile image saved")
                 self.getProfilePic()
             } else {
+                print("error saving")
                 print(error?.localizedDescription)
             }
         })

@@ -11,14 +11,12 @@ import Parse
 
 class UsersObject: PFObject, PFSubclassing {
 
-    @NSManaged var usersName: String?
+    @NSManaged var displayName: String?
     @NSManaged var age: Int
-    @NSManaged var email: String?
-    @NSManaged var username: String?
-    @NSManaged var password: String?
+    @NSManaged var avatar: PFFile?
     
     class func parseClassName() -> String {
-        return "Users"
+        return "User"
     }
     
 }
