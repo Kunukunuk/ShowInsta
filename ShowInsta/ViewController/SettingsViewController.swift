@@ -22,8 +22,8 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        (viewController as? ProfileViewController)?.summary.text = "I am back"
-        (viewController as? ProfileViewController)?.printHello()
+        (viewController as? ProfileViewController)?.summary.text = summaryText.text
+        (viewController as? ProfileViewController)?.saveUser()
         
     }
 }

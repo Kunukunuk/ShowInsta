@@ -20,7 +20,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     var imagePicker = UIImagePickerController()
     var takenProfile: UIImage?
     var posts: [PFObject] = []
-    var summaryText: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +30,60 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         collectionView.dataSource = self
         getName()
         getPosts()
-        print("I am here")
+        getUserInfo()
         // Do any additional setup after loading the view.
     }
     
-    func printHello() {
-        print("summary: \(summaryText)")
+    func resize(image: UIImage, newSize: CGSize) -> UIImage {
+        let resizeImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        resizeImageView.contentMode = UIView.ContentMode.scaleAspectFill
+        resizeImageView.image = image
+        
+        UIGraphicsBeginImageContext(resizeImageView.frame.size)
+        resizeImageView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+    
+    func getUserInfo() {
+        let query = UsersObject.query()
+        query?.order(byDescending: "createdAt")
+        query?.whereKey("author", equalTo: PFUser.current())
+        
+        query?.findObjectsInBackground(block: { (users, error) in
+            if error == nil {
+                for user in users! {
+                    if user["avatar"] == nil {
+                        self.profileImageView.image = UIImage(named: "Profile")
+                    } else {
+                        self.profileImageView.file = user["avatar"] as? PFFile
+                        self.profileImageView.loadInBackground()
+                    }
+                    self.nameLabel.text = user["displayName"] as? String
+                    self.summary.text = user["summary"] as? String
+                    break;
+                }
+            } else {
+                print(error?.localizedDescription)
+            }
+        })
+    }
+    
+    func saveUser() {
+        
+        if takenProfile != nil {
+            takenProfile = resize(image: takenProfile!, newSize: CGSize(width: 1000, height: 1000))
+        }
+        
+        UsersObject.saveUserInfo(image: takenProfile, withSummary: summary.text, withName: nameLabel.text) { (success, error) in
+            if success {
+                print("successfully saved")
+                self.getUserInfo()
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
     }
     func getPosts() {
         
@@ -129,6 +176,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         }
         imagePicker.dismiss(animated: true, completion: nil)
         
+        saveUser()
     }
     
     func getName() {
