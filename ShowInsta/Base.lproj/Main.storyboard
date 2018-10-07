@@ -228,15 +228,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="05W-aK-hsB" customClass="PFImageView">
-                                                    <rect key="frame" x="11" y="31" width="98" height="108"/>
+                                                    <rect key="frame" x="8" y="28" width="104" height="114"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="05W-aK-hsB" firstAttribute="leading" secondItem="gm4-dH-CmN" secondAttribute="leadingMargin" constant="3" id="G59-gQ-kOT"/>
-                                            <constraint firstItem="05W-aK-hsB" firstAttribute="top" secondItem="gm4-dH-CmN" secondAttribute="topMargin" constant="3" id="QU6-MD-PRm"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="05W-aK-hsB" secondAttribute="trailing" constant="3" id="cK8-YG-UzO"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="05W-aK-hsB" secondAttribute="bottom" constant="3" id="qY5-E0-YfB"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="05W-aK-hsB" secondAttribute="bottom" id="0wB-0C-ax4"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="05W-aK-hsB" secondAttribute="trailing" id="CeE-L8-vXe"/>
+                                            <constraint firstItem="05W-aK-hsB" firstAttribute="leading" secondItem="gm4-dH-CmN" secondAttribute="leadingMargin" id="VlZ-fq-Z86"/>
+                                            <constraint firstItem="05W-aK-hsB" firstAttribute="top" secondItem="gm4-dH-CmN" secondAttribute="topMargin" id="i1t-Vf-RU2"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="userPhotoImage" destination="05W-aK-hsB" id="LSq-Hb-Ooq"/>
@@ -351,17 +351,20 @@
             </objects>
             <point key="canvasLocation" x="4992.8000000000002" y="133.5832083958021"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="Hfl-Ag-2ay">
             <objects>
-                <viewController id="vFh-WF-5dd" sceneMemberID="viewController">
+                <viewController id="vFh-WF-5dd" customClass="SettingsViewController" customModule="ShowInsta" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eyk-nj-fGN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vmf-bW-xLJ" customClass="RSKPlaceholderTextView" customModule="RSKPlaceholderTextView">
-                                <rect key="frame" x="10" y="78" width="355" height="128"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vmf-bW-xLJ" customClass="RSKPlaceholderTextView" customModule="RSKPlaceholderTextView">
+                                <rect key="frame" x="10" y="74" width="355" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="XJ0-SC-ogu"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <userDefinedRuntimeAttributes>
@@ -377,6 +380,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WHo-m6-ZJq"/>
                     </view>
+                    <connections>
+                        <outlet property="summaryText" destination="vmf-bW-xLJ" id="bpG-8g-4EU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZC-eT-yLG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

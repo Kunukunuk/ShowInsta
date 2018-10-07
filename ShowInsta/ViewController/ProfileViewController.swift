@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     var imagePicker = UIImagePickerController()
     var takenProfile: UIImage?
     var posts: [PFObject] = []
+    var summaryText: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +31,13 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         collectionView.dataSource = self
         getName()
         getPosts()
+        print("I am here")
         // Do any additional setup after loading the view.
     }
     
+    func printHello() {
+        print("summary: \(summaryText)")
+    }
     func getPosts() {
         
         let query = Post.query()
