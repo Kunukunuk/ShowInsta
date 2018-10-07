@@ -64,14 +64,17 @@ class LoginViewController: UIViewController {
                 if let error = error {
                     print("User log in failed: \(error.localizedDescription)")
                     self.loginAlert(with: error.localizedDescription)
-                    loading.hide(animated: true)
-                    //loading.hide(for: self.view, animated: true)
                 } else {
                     print("User logged in successfully")
                     // display view controller that needs to shown after successful login
-                    self.performSegue(withIdentifier: "loginSegue", sender: nil)
-                    loading.hide(animated: true)
-                    //loading.hide(for: self.view, animated: true)
+                    loading.mode = .customView
+                    loading.customView = UIImageView(image: UIImage(named: "check.png"))
+                    loading.label.text = "Successfully logged in"
+                    loading.hide(animated: true, afterDelay: 1)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                       self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                    })
+                    //self.performSegue(withIdentifier: "loginSegue", sender: nil)
                 }
             }
         }
