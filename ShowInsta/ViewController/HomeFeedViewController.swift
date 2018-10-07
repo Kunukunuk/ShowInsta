@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import ParseLiveQuery
 import MBProgressHUD
+import ParseUI
 
 class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
 
@@ -25,6 +26,7 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     var refreshControl: UIRefreshControl!
     var loadingMoreView:InfiniteScrollActivityView?
     var limit = 20
+    var userInfo: PFObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +53,7 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         // add refresh control to table view
         tableView.insertSubview(refreshControl, at: 0)
         
+        getUserInfo()
         getPosts()
     }
     
@@ -188,14 +191,70 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         present(imagePicker, animated: true, completion: nil)
     }
     
+    func getUserInfo() {
+        let query = UsersObject.query()
+        query?.order(byDescending: "createdAt")
+        query?.includeKey("author")
+        
+        query?.findObjectsInBackground(block: { (users, error) in
+            if error == nil {
+                for user in users! {
+                    self.userInfo = user
+                    break
+                }
+            } else {
+                print(error?.localizedDescription)
+            }
+        })
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+        
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         if tableData.isEmpty {
             return 20
         }
         return tableData.count
-        
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        headerView.backgroundColor = UIColor(white: 1, alpha: 0.9)
+        
+        let profileView = PFImageView(frame: CGRect(x: 10, y: 10, width: 30, height: 30))
+        profileView.clipsToBounds = true
+        profileView.layer.cornerRadius = 15;
+        profileView.layer.borderColor = UIColor(white: 0.7, alpha: 0.8).cgColor
+        profileView.layer.borderWidth = 1;
+        
+        var name = "Name"
+        if userInfo != nil {
+            name = (userInfo!["displayName"] as? String)!
+            profileView.file = userInfo!["avatar"] as? PFFile
+            profileView.loadInBackground()
+        } else {
+            profileView.image = UIImage(named: "Profile")
+        }
+        
+        headerView.addSubview(profileView)
+        
+        let label = UILabel(frame: CGRect(x: 60, y: 0, width: 375, height: 50))
+        label.text = name
+        headerView.addSubview(label)
+        
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         
@@ -270,11 +329,6 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
             
             takenImage = itemVC.takenImage
             caption = itemVC.captionTextView.text
-            
-            //dates.append(currentDateTime)
-            //tableData.append([currentDateTime: [takenImage!, caption! as AnyObject]])
-            
-            //tableView.reloadData()
             
         }
         
