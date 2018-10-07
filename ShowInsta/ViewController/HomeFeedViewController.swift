@@ -138,8 +138,11 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
             if success {
                 
                 self.getPosts()
+                loading.mode = .customView
+                loading.customView = UIImageView(image: UIImage(named: "check.png"))
+                loading.label.text = "Saved your post"
+                loading.hide(animated: true, afterDelay: 1)
                 
-                loading.hide(animated: true)
                 self.tableView.reloadData()
             } else {
                 print("not saved")

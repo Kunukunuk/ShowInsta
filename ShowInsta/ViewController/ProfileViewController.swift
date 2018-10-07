@@ -8,10 +8,11 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource {
     
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileImageView: PFImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var summary: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -26,6 +27,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         
         collectionView.dataSource = self
         getName()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -95,6 +97,34 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         } else {
             nameLabel.text = currentUser!["name"] as? String
         }
-        //print(currentUser!["name"])
+    }
+    
+    func getProfilePic() {
+        
+        let currentUser = PFUser.current()
+        
+        if currentUser!["avatar"] != nil {
+            profileImageView.file = currentUser!["avatar"] as? PFFile
+            profileImageView.loadInBackground()
+        }
+    }
+    
+    //Mark save user profile picture
+
+    func saveProfilePhoto() {
+        let currentUser = PFUser.current()
+        
+        let imgData = takenProfile?.pngData()
+        currentUser!["avatar"] = PFFile(name: "profile.png", data: imgData!)
+        
+        currentUser?.saveInBackground(block: { (success, error) in
+            if success {
+                print("profile image saved")
+                self.getProfilePic()
+            } else {
+                print(error?.localizedDescription)
+            }
+        })
+        
     }
 }

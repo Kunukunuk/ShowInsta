@@ -64,6 +64,7 @@ class LoginViewController: UIViewController {
                 if let error = error {
                     print("User log in failed: \(error.localizedDescription)")
                     self.loginAlert(with: error.localizedDescription)
+                    loading.hide(animated: true)
                 } else {
                     print("User logged in successfully")
                     // display view controller that needs to shown after successful login
