@@ -12,6 +12,6 @@ import ParseUI
 class ProfileCell: UICollectionViewCell {
     
     @IBOutlet weak var userPhotoImage: PFImageView!
-    
+    @IBOutlet weak var otherImageView: PFImageView!
     
 }

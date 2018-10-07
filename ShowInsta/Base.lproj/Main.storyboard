@@ -450,6 +450,9 @@
                                             <constraint firstAttribute="trailingMargin" secondItem="zFC-BM-ib8" secondAttribute="trailing" id="hNb-f2-prz"/>
                                             <constraint firstItem="zFC-BM-ib8" firstAttribute="top" secondItem="W0M-GT-5aY" secondAttribute="topMargin" id="rCu-ta-Gr3"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="otherImageView" destination="zFC-BM-ib8" id="4mS-7i-10q"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
