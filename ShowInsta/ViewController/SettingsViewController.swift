@@ -12,8 +12,8 @@ import RSKPlaceholderTextView
 class SettingsViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var summaryText: RSKPlaceholderTextView!
+    var takenImage: UIImage?
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,8 +22,13 @@ class SettingsViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        (viewController as? ProfileViewController)?.summary.text = summaryText.text
-        (viewController as? ProfileViewController)?.saveUser()
-        
+        let previousController = viewController as? ProfileViewController
+        previousController?.takenProfile = takenImage
+        if !summaryText.text.isEmpty{
+            previousController?.summary.text = summaryText.text
+            previousController?.saveUser()
+        }
     }
+    
+    
 }

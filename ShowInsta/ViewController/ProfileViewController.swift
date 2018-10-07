@@ -31,7 +31,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         getName()
         getPosts()
         getUserInfo()
-        // Do any additional setup after loading the view.
     }
     
     func resize(image: UIImage, newSize: CGSize) -> UIImage {
@@ -53,7 +52,9 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         
         query?.findObjectsInBackground(block: { (users, error) in
             if error == nil {
+                
                 for user in users! {
+                    
                     if user["avatar"] == nil {
                         self.profileImageView.image = UIImage(named: "Profile")
                     } else {
@@ -62,7 +63,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                     }
                     self.nameLabel.text = user["displayName"] as? String
                     self.summary.text = user["summary"] as? String
-                    break;
+                    break
+                
                 }
             } else {
                 print(error?.localizedDescription)
@@ -189,4 +191,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Setting" {
+            let settings = segue.destination as! SettingsViewController
+            settings.takenImage = takenProfile
+        }
+    }
 }
