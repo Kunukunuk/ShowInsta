@@ -388,6 +388,105 @@
             </objects>
             <point key="canvasLocation" x="4054" y="940"/>
         </scene>
+        <!--Other User View Controller-->
+        <scene sceneID="IxK-pc-20K">
+            <objects>
+                <viewController id="Bpr-ui-j20" customClass="OtherUserViewController" customModule="ShowInsta" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Z6-nf-RAt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M2v-XF-wAD" customClass="PFImageView">
+                                <rect key="frame" x="10" y="74" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="lKz-be-Crb"/>
+                                    <constraint firstAttribute="width" constant="150" id="zXg-gY-3ue"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S95-pu-Biq">
+                                <rect key="frame" x="170" y="74" width="195" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swd-rs-Yqt">
+                                <rect key="frame" x="170" y="114" width="195" height="30"/>
+                                <state key="normal" title="Follow"/>
+                                <connections>
+                                    <action selector="followButton:" destination="Bpr-ui-j20" eventType="touchUpInside" id="CUQ-oy-1dW"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Summary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nX8-1x-Vxr">
+                                <rect key="frame" x="10" y="234" width="355" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9ri-3S-tEa">
+                                <rect key="frame" x="10" y="268" width="355" height="350"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2h8-bc-Lc3">
+                                    <size key="itemSize" width="126" height="165"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProfileCell" id="W0M-GT-5aY" customClass="ProfileCell" customModule="ShowInsta" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="126" height="165"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="126" height="165"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zFC-BM-ib8" customClass="PFImageView">
+                                                    <rect key="frame" x="8" y="28" width="110" height="129"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottomMargin" secondItem="zFC-BM-ib8" secondAttribute="bottom" id="C7R-HS-weO"/>
+                                            <constraint firstItem="zFC-BM-ib8" firstAttribute="leading" secondItem="W0M-GT-5aY" secondAttribute="leadingMargin" id="VVj-Cj-nnt"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="zFC-BM-ib8" secondAttribute="trailing" id="hNb-f2-prz"/>
+                                            <constraint firstItem="zFC-BM-ib8" firstAttribute="top" secondItem="W0M-GT-5aY" secondAttribute="topMargin" id="rCu-ta-Gr3"/>
+                                        </constraints>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="M2v-XF-wAD" firstAttribute="leading" secondItem="MMz-7D-JAU" secondAttribute="leading" constant="10" id="2Wi-JV-xpY"/>
+                            <constraint firstItem="S95-pu-Biq" firstAttribute="leading" secondItem="M2v-XF-wAD" secondAttribute="trailing" constant="10" id="6jc-Ui-Sio"/>
+                            <constraint firstItem="nX8-1x-Vxr" firstAttribute="leading" secondItem="MMz-7D-JAU" secondAttribute="leading" constant="10" id="8D4-Dx-cVh"/>
+                            <constraint firstItem="swd-rs-Yqt" firstAttribute="top" secondItem="S95-pu-Biq" secondAttribute="bottom" constant="10" id="8ho-S2-lZv"/>
+                            <constraint firstItem="MMz-7D-JAU" firstAttribute="trailing" secondItem="swd-rs-Yqt" secondAttribute="trailing" constant="10" id="CxL-Mi-v0R"/>
+                            <constraint firstItem="MMz-7D-JAU" firstAttribute="bottom" secondItem="9ri-3S-tEa" secondAttribute="bottom" id="Gaj-pG-Aw7"/>
+                            <constraint firstItem="swd-rs-Yqt" firstAttribute="leading" secondItem="M2v-XF-wAD" secondAttribute="trailing" constant="10" id="RSG-gy-GoF"/>
+                            <constraint firstItem="S95-pu-Biq" firstAttribute="top" secondItem="MMz-7D-JAU" secondAttribute="top" constant="10" id="RiN-WT-vBD"/>
+                            <constraint firstItem="nX8-1x-Vxr" firstAttribute="leading" secondItem="M2v-XF-wAD" secondAttribute="leading" id="SVj-CE-1u1"/>
+                            <constraint firstItem="MMz-7D-JAU" firstAttribute="trailing" secondItem="nX8-1x-Vxr" secondAttribute="trailing" constant="10" id="V27-3b-JHJ"/>
+                            <constraint firstItem="MMz-7D-JAU" firstAttribute="trailing" secondItem="9ri-3S-tEa" secondAttribute="trailing" constant="10" id="Ws1-ms-92p"/>
+                            <constraint firstItem="9ri-3S-tEa" firstAttribute="leading" secondItem="MMz-7D-JAU" secondAttribute="leading" constant="10" id="kFd-Py-4Ot"/>
+                            <constraint firstItem="M2v-XF-wAD" firstAttribute="top" secondItem="MMz-7D-JAU" secondAttribute="top" constant="10" id="nHn-Zz-nU5"/>
+                            <constraint firstItem="nX8-1x-Vxr" firstAttribute="top" secondItem="M2v-XF-wAD" secondAttribute="bottom" constant="10" id="nvv-uh-Fhi"/>
+                            <constraint firstItem="S95-pu-Biq" firstAttribute="top" secondItem="M2v-XF-wAD" secondAttribute="top" id="o0f-3m-TRI"/>
+                            <constraint firstItem="9ri-3S-tEa" firstAttribute="top" secondItem="nX8-1x-Vxr" secondAttribute="bottom" constant="10" id="u9B-ei-LOq"/>
+                            <constraint firstItem="MMz-7D-JAU" firstAttribute="trailing" secondItem="S95-pu-Biq" secondAttribute="trailing" constant="10" id="uJJ-TO-9Nd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MMz-7D-JAU"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="9ri-3S-tEa" id="eQo-2K-CIZ"/>
+                        <outlet property="summaryLabel" destination="nX8-1x-Vxr" id="pwj-5C-wXs"/>
+                        <outlet property="userAvatar" destination="M2v-XF-wAD" id="p7k-V8-j4A"/>
+                        <outlet property="userName" destination="S95-pu-Biq" id="eQd-WZ-S4w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IUm-Mm-S6g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2024.8" y="-725.48725637181417"/>
+        </scene>
         <!--Details View Controller-->
         <scene sceneID="P8M-5G-BTa">
             <objects>
@@ -641,6 +740,7 @@
                     <connections>
                         <outlet property="tableView" destination="Lau-VE-eti" id="lJj-ia-VYZ"/>
                         <segue destination="vwZ-2J-jFL" kind="presentation" identifier="showItem" id="x9W-0h-IKG"/>
+                        <segue destination="Bpr-ui-j20" kind="show" identifier="userProfile" id="p4b-ZK-aXG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wmH-0N-FAm" userLabel="First Responder" sceneMemberID="firstResponder"/>

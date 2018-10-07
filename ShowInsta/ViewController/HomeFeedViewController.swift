@@ -245,7 +245,15 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         label.text = name
         headerView.addSubview(label)
         
+        let tappedHeader = UITapGestureRecognizer(target: self, action: #selector(HomeFeedViewController.tappedHeaderView(_:)))
+        
+        headerView.addGestureRecognizer(tappedHeader)
+        
         return headerView
+    }
+    
+    @objc func tappedHeaderView(_ tapped: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "userProfile", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -368,6 +376,10 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
                     destinationVC.caption = value[1] as? String
                 }
             }
+        } else if segue.identifier == "userProfile" {
+            let otherUser = segue.destination as! OtherUserViewController
+            
+            otherUser.userInfo = userInfo
         }
     }
 

@@ -10,6 +10,7 @@
 		0D0410812166D05B00B2165D /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0410802166D05B00B2165D /* CommentViewController.swift */; };
 		0D0410832168F41100B2165D /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0410822168F41100B2165D /* ProfileCell.swift */; };
 		0D0410852169AC8E00B2165D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0410842169AC8E00B2165D /* SettingsViewController.swift */; };
+		0D041087216AAD7C00B2165D /* OtherUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D041086216AAD7C00B2165D /* OtherUserViewController.swift */; };
 		0D6E3754215EF360006538EA /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E3753215EF360006538EA /* ItemViewController.swift */; };
 		0D6E3756215EF6D1006538EA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E3755215EF6D1006538EA /* ProfileViewController.swift */; };
 		0D6E375821616933006538EA /* UsersObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6E375721616933006538EA /* UsersObject.swift */; };
@@ -52,6 +53,7 @@
 		0D0410802166D05B00B2165D /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		0D0410822168F41100B2165D /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		0D0410842169AC8E00B2165D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		0D041086216AAD7C00B2165D /* OtherUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserViewController.swift; sourceTree = "<group>"; };
 		0D6E3753215EF360006538EA /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		0D6E3755215EF6D1006538EA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0D6E375721616933006538EA /* UsersObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersObject.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				0D6E378121632DB5006538EA /* DetailsViewController.swift */,
 				0D0410802166D05B00B2165D /* CommentViewController.swift */,
 				0D0410842169AC8E00B2165D /* SettingsViewController.swift */,
+				0D041086216AAD7C00B2165D /* OtherUserViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D0410832168F41100B2165D /* ProfileCell.swift in Sources */,
+				0D041087216AAD7C00B2165D /* OtherUserViewController.swift in Sources */,
 				0D6E3780216322DC006538EA /* InfiniteScrollActivityView.swift in Sources */,
 				0D7D26B7215B005900F3E7B3 /* LoginViewController.swift in Sources */,
 				0D7D2689215AF9B300F3E7B3 /* AppDelegate.swift in Sources */,
