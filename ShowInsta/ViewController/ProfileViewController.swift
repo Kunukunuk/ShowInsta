@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseUI
+import MBProgressHUD
 
 class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDataSource {
     
@@ -18,6 +19,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var collectionView: UICollectionView!
     var imagePicker = UIImagePickerController()
     var takenProfile: UIImage?
+    var posts: [PFObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,16 +29,56 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         
         collectionView.dataSource = self
         getName()
-        getProfilePic()
+        getPosts()
         // Do any additional setup after loading the view.
     }
     
+    func getPosts() {
+        
+        let query = Post.query()
+        
+        query?.order(byDescending: "createdAt")
+        query?.includeKey("author")
+        
+        query?.findObjectsInBackground { (allPosts, error) in
+            if error == nil {
+                let loading = MBProgressHUD.showAdded(to: self.view, animated: true)
+                loading.label.text = "Retrieving post(s)"
+                if let posts = allPosts {
+                    
+                    self.posts.removeAll()
+                    
+                    for post in posts {
+                        
+                        self.posts.append(post)
+
+                    }
+                    loading.hide(animated: true)
+                    self.collectionView.reloadData()
+                }
+            } else {
+                print(error?.localizedDescription)
+                
+            }
+        }
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        if posts.isEmpty {
+            return 1
+        } else {
+            return posts.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
+        if !posts.isEmpty {
+            let post = posts[indexPath.row]
+            cell.userPhotoImage.file = post["media"] as? PFFile
+            cell.userPhotoImage.loadInBackground()
+        }
         
         return cell
     }
@@ -82,7 +124,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         }
         imagePicker.dismiss(animated: true, completion: nil)
         
-        saveProfilePhoto()
     }
     
     func getName() {
@@ -95,34 +136,4 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         }
     }
     
-    func getProfilePic() {
-        
-        let currentUser = PFUser.current()
-        
-        print(currentUser)
-        
-        if currentUser!["avatar"] != nil {
-            profileImageView.file = currentUser!["avatar"] as? PFFile
-            profileImageView.loadInBackground()
-        }
-    }
-    
-    //Mark save user profile picture
-
-    func saveProfilePhoto() {
-        
-        let imgData = takenProfile?.pngData()
-        PFUser.current()!["avatar"] = PFFile(name: "profile.png", data: imgData!)
-        
-        PFUser.current()!.saveInBackground(block: { (success, error) in
-            if success {
-                print("profile image saved")
-                self.getProfilePic()
-            } else {
-                print("error saving")
-                print(error?.localizedDescription)
-            }
-        })
-        
-    }
 }
