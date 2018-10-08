@@ -29,6 +29,14 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource {
         userAvatar.file = userInfo?["avatar"] as? PFFile
         userAvatar.loadInBackground()
         
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = layout.minimumInteritemSpacing
+        let cellsPerLine: CGFloat = 3
+        let interItemSpacingTotal = layout.minimumInteritemSpacing * (cellsPerLine - 1)
+        let width = collectionView.frame.size.width / cellsPerLine - interItemSpacingTotal / cellsPerLine
+        layout.itemSize = CGSize(width: width, height: width * 3 / 2)
+        
         getUserPosts()
     }
     

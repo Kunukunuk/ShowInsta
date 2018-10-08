@@ -26,7 +26,9 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     var refreshControl: UIRefreshControl!
     var loadingMoreView:InfiniteScrollActivityView?
     var limit = 20
+    var user: PFUser?
     var userInfo: PFObject?
+    var usersInfo: [PFObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +55,6 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         // add refresh control to table view
         tableView.insertSubview(refreshControl, at: 0)
         
-        getUserInfo()
         getPosts()
     }
     
@@ -69,11 +70,11 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         query?.order(byDescending: "createdAt")
         query?.includeKey("author")
         query?.limit = limit
+        let loading = MBProgressHUD.showAdded(to: self.view, animated: true)
+        loading.label.text = "Retrieving post(s)"
         
         query?.findObjectsInBackground { (allPosts, error) in
             if error == nil {
-                let loading = MBProgressHUD.showAdded(to: self.view, animated: true)
-                loading.label.text = "Retrieving post(s)"
                 if let posts = allPosts {
                     
                     self.tableData.removeAll()
@@ -191,12 +192,22 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         present(imagePicker, animated: true, completion: nil)
     }
     
-    func getUserInfo() {
+    func getUserInfo(of: PFUser) {
+        
         let query = UsersObject.query()
         query?.order(byDescending: "createdAt")
-        query?.includeKey("author")
-        
-        query?.findObjectsInBackground(block: { (users, error) in
+        query?.whereKey("author", equalTo: of)
+        do {
+            usersInfo = try (query?.findObjects())!
+            for user in usersInfo {
+                self.userInfo = user
+                break
+            }
+            print("userInfo: \(usersInfo)")
+        } catch {
+            print(error.localizedDescription)
+        }
+        /*query?.findObjectsInBackground(block: { (users, error) in
             if error == nil {
                 for user in users! {
                     self.userInfo = user
@@ -205,7 +216,7 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
             } else {
                 print(error?.localizedDescription)
             }
-        })
+        })*/
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -230,13 +241,19 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
         profileView.layer.borderColor = UIColor(white: 0.7, alpha: 0.8).cgColor
         profileView.layer.borderWidth = 1;
         
+        print("section: \(section)")
         var name = "Name"
-        if userInfo != nil {
-            name = (userInfo!["displayName"] as? String)!
-            profileView.file = userInfo!["avatar"] as? PFFile
-            profileView.loadInBackground()
-        } else {
-            profileView.image = UIImage(named: "Profile")
+        
+        if !posts.isEmpty {
+            user = posts[section]["author"] as? PFUser
+            getUserInfo(of: user!)
+            if userInfo != nil {
+                name = (userInfo!["displayName"] as? String)!
+                profileView.file = userInfo!["avatar"] as? PFFile
+                profileView.loadInBackground()
+            } else {
+                profileView.image = UIImage(named: "Profile")
+            }
         }
         
         headerView.addSubview(profileView)
@@ -263,11 +280,12 @@ class HomeFeedViewController: UIViewController, UINavigationControllerDelegate, 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         
         if !tableData.isEmpty {
-            let date = tableData[indexPath.row]
+            let date = tableData[indexPath.section]
             
             for (key, value) in date {
                 

@@ -28,6 +28,14 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         profileImageView.image = UIImage(named: "Profile")
         
         collectionView.dataSource = self
+        
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = layout.minimumInteritemSpacing
+        let cellsPerLine: CGFloat = 3
+        let interItemSpacingTotal = layout.minimumInteritemSpacing * (cellsPerLine - 1)
+        let width = collectionView.frame.size.width / cellsPerLine - interItemSpacingTotal / cellsPerLine
+        layout.itemSize = CGSize(width: width, height: width * 3 / 2)
         getName()
         getPosts()
         getUserInfo()
@@ -46,6 +54,9 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     func getUserInfo() {
+        
+        let loading = MBProgressHUD.showAdded(to: self.view, animated: true)
+        loading.label.text = "Retrieving user information"
         let query = UsersObject.query()
         query?.order(byDescending: "createdAt")
         query?.whereKey("author", equalTo: PFUser.current())
@@ -66,6 +77,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                     break
                 
                 }
+                loading.mode = .customView
+                loading.customView = UIImageView(image: UIImage(named: "check.png"))
+                loading.label.text = "Retrieved the user information"
+                loading.hide(animated: true, afterDelay: 1)
             } else {
                 print(error?.localizedDescription)
             }
@@ -74,6 +89,9 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     
     func saveUser() {
         
+        let loading = MBProgressHUD.showAdded(to: self.view, animated: true)
+        loading.label.text = "Saving user information"
+        
         if takenProfile != nil {
             takenProfile = resize(image: takenProfile!, newSize: CGSize(width: 1000, height: 1000))
         }
@@ -81,6 +99,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         UsersObject.saveUserInfo(image: takenProfile, withSummary: summary.text, withName: nameLabel.text) { (success, error) in
             if success {
                 print("successfully saved")
+                loading.mode = .customView
+                loading.customView = UIImageView(image: UIImage(named: "check.png"))
+                loading.label.text = "Saved the user information"
+                loading.hide(animated: true, afterDelay: 1)
                 self.getUserInfo()
             } else {
                 print(error?.localizedDescription)
@@ -88,16 +110,17 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         }
     }
     func getPosts() {
+        let loading = MBProgressHUD.showAdded(to: self.view, animated: true)
+        loading.label.text = "Retrieving post(s)"
         
         let query = Post.query()
         
         query?.order(byDescending: "createdAt")
-        query?.includeKey("author")
+        query?.whereKey("author", equalTo: PFUser.current())
         
         query?.findObjectsInBackground { (allPosts, error) in
             if error == nil {
-                let loading = MBProgressHUD.showAdded(to: self.view, animated: true)
-                loading.label.text = "Retrieving post(s)"
+                
                 if let posts = allPosts {
                     
                     self.posts.removeAll()
@@ -132,6 +155,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
             let post = posts[indexPath.row]
             cell.userPhotoImage.file = post["media"] as? PFFile
             cell.userPhotoImage.loadInBackground()
+        } else {
+            cell.userPhotoImage.image = UIImage(named: "image")
         }
         
         return cell

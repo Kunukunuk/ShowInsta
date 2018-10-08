@@ -64,10 +64,8 @@ class DetailsViewController: UIViewController {
     
     func getComments() {
         if post!["comment"] != nil {
-            print("in comments")
             commentsLabel.text = post!["comment"] as? String
         } else {
-            print("in no comments")
             commentsLabel.text = ""
         }
     }
@@ -110,10 +108,5 @@ class DetailsViewController: UIViewController {
         savePostCounts()
         // Use data from the view controller which initiated the unwind segue
     }
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "commentBox" {
-            
-        }
-    }*/
 
 }
