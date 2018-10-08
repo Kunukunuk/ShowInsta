@@ -50,6 +50,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 Here's a walkthrough of implemented user stories:
 
 ![kun_huang_insta02](https://user-images.githubusercontent.com/28847045/46591528-634b2700-ca89-11e8-9f61-bc82452ebc4f.gif)
+![kun_huang_insta03](https://user-images.githubusercontent.com/28847045/46591596-b1602a80-ca89-11e8-9ac8-b11855b49ce2.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
