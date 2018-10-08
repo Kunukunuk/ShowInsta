@@ -2,7 +2,7 @@
 
 **ShowInsta** is a photo sharing app using Parse as its backend.
 
-Time spent: **40** hours spent in total
+Time spent: **55** hours spent in total
 
 ## User Stories
 
@@ -18,20 +18,20 @@ The following **required** functionality is completed:
 
 The following **stretch** features are implemented:
 
-- [ ] Style the login page to look like the real Instagram login page (+1pt)
-- [ ] Style the feed to look like the real Instagram feed (+1pt)
+- [x] Style the login page to look like the real Instagram login page (+1pt)
+- [x] Style the feed to look like the real Instagram feed (+1pt)
 - [X] User can use a tab bar to switch between all "Instagram" posts and posts published only by the user. AKA, tabs for Home Feed and Profile (+2pt)
 - [ ] Add a custom camera using the CameraManager library (+1pt)
 - [x] User can load more posts once he or she reaches the bottom of the feed using infinite scrolling (+2pt)
 - [X] Show the username and creation time for each post using section headers (+1pt)
    - If you use TableView Section Headers to display the the username and creation time, you'll get "sticky headers" similar to the actual Instagram app.
-- [ ] After the user submits a new post, show a progress HUD while the post is being uploaded to Parse (+1pt)
+- [x] After the user submits a new post, show a progress HUD while the post is being uploaded to Parse (+1pt)
 - User Profiles:
-   - [ ] Allow the logged in user to add a profile photo (+2pt)
-   - [ ] Display the profile photo with each post (+1pt)
-   - [ ] Tapping on a post's username or profile photo goes to that user's profile page (+2pt)
-- [ ] User can comment on a post and see all comments for each post in the post details screen (+3pt)
-- [ ] User can like a post and see number of likes for each post in the post details screen (+1pt)
+   - [x] Allow the logged in user to add a profile photo (+2pt)
+   - [x] Display the profile photo with each post (+1pt)
+   - [x] Tapping on a post's username or profile photo goes to that user's profile page (+2pt)
+- [x] User can comment on a post and see all comments for each post in the post details screen (+3pt)
+- [x] User can like a post and see number of likes for each post in the post details screen (+1pt)
 - [ ] Run your app on your phone and use the camera to take the photo (+1pt)
 
 
@@ -49,7 +49,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-![kun_huang_insta](https://user-images.githubusercontent.com/28847045/46328225-1ae8c080-c5d4-11e8-9fbd-6be3a1a8ab1c.gif)
+![kun_huang_insta02](https://user-images.githubusercontent.com/28847045/46591528-634b2700-ca89-11e8-9f61-bc82452ebc4f.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
